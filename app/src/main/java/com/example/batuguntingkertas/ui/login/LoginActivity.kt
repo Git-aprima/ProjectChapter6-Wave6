@@ -3,10 +3,8 @@ package com.example.batuguntingkertas.ui.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import com.bumptech.glide.Glide
 import com.example.batuguntingkertas.R
 import com.example.batuguntingkertas.data.database.DbUser
 import com.example.batuguntingkertas.ui.MainActivity
@@ -17,24 +15,26 @@ class LoginActivity : AppCompatActivity(), LoginNavigator {
 
     private lateinit var etUserName : EditText
     private lateinit var etUserPassword : EditText
-    private lateinit var btnLogin : Button
+    private lateinit var btnSignUp : Button
     private lateinit var btnLoginDua : Button
-    private lateinit var tvBuatAkun : TextView
+    private lateinit var ivJudul : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         etUserName = findViewById(R.id.etUsername)
         etUserPassword = findViewById(R.id.etUserPassword)
-        btnLogin = findViewById(R.id.btnLogin)
+        btnSignUp = findViewById(R.id.btnSignUp)
         btnLoginDua = findViewById(R.id.btnLoginDua)
-        tvBuatAkun = findViewById(R.id.tvBuatAkun)
+        ivJudul = findViewById(R.id.ivJudul)
         val login = LoginPresenter (this,this)
+
+        Glide.with(this).load("https://i.ibb.co/HC5ZPgD/splash-screen1.png").into(ivJudul)
 
         //Tanpa Pattern MVP dulu
         val mDb = DbUser.getInstance(this)
 
-        btnLogin.setOnClickListener{
+        btnSignUp.setOnClickListener{
             GlobalScope.launch {
                 val user = mDb?.userDao()?.getUser(etUserName.text.toString(),etUserPassword.text.toString())
 
