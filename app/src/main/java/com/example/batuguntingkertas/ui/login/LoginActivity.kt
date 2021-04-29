@@ -13,11 +13,11 @@ import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity(), LoginNavigator {
 
-    private lateinit var etUserName : EditText
-    private lateinit var etUserPassword : EditText
-    private lateinit var btnSignUp : Button
-    private lateinit var btnLoginDua : Button
-    private lateinit var ivJudul : ImageView
+    private lateinit var etUserName: EditText
+    private lateinit var etUserPassword: EditText
+    private lateinit var btnSignUp: Button
+    private lateinit var btnLoginDua: Button
+    private lateinit var ivJudul: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,22 +27,27 @@ class LoginActivity : AppCompatActivity(), LoginNavigator {
         btnSignUp = findViewById(R.id.btnSignUp)
         btnLoginDua = findViewById(R.id.btnLoginDua)
         ivJudul = findViewById(R.id.ivJudul)
-        val login = LoginPresenter (this,this)
+        val login = LoginPresenter(this, this)
 
         Glide.with(this).load("https://i.ibb.co/HC5ZPgD/splash-screen1.png").into(ivJudul)
 
         //Tanpa Pattern MVP dulu
         val mDb = DbUser.getInstance(this)
 
-        btnSignUp.setOnClickListener{
+        btnSignUp.setOnClickListener {
             GlobalScope.launch {
-                val user = mDb?.userDao()?.getUser(etUserName.text.toString(),etUserPassword.text.toString())
+                val user = mDb?.userDao()
+                    ?.getUser(etUserName.text.toString(), etUserPassword.text.toString())
 
                 runOnUiThread {
-                    if (user!= null){
-                        startActivity(Intent(this@LoginActivity,MainActivity::class.java))
+                    if (user != null) {
+                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                     } else {
-                        Toast.makeText(this@LoginActivity, "Username atau Password Anda Salah", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Username atau Password Anda Salah",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             }
@@ -50,7 +55,7 @@ class LoginActivity : AppCompatActivity(), LoginNavigator {
         btnLoginDua.setOnClickListener {
             val nama = etUserName.text.toString()
             val password = etUserPassword.text.toString()
-            login.login(nama,password)
+            login.login(nama, password)
         }
     }
 
