@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="10dp"
     android:background="@drawable/background1"
-    tools:context=".fragments.HomeFragment">
+    tools:context=".ui.play.fragments.HomeFragment">
 
     <ImageView
         android:id="@+id/icon"

@@ -1,4 +1,4 @@
-package com.example.batuguntingkertas.fragments
+package com.example.batuguntingkertas.ui.play.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

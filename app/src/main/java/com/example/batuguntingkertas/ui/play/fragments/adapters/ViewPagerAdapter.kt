@@ -1,4 +1,4 @@
-package com.example.batuguntingkertas.fragments.adapters
+package com.example.batuguntingkertas.ui.play.fragments.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

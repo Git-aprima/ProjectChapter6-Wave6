@@ -1,12 +1,13 @@
-package com.example.batuguntingkertas
+package com.example.batuguntingkertas.ui.play
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
-import com.example.batuguntingkertas.fragments.HistoryFragment
-import com.example.batuguntingkertas.fragments.HomeFragment
-import com.example.batuguntingkertas.fragments.MemberFragment
-import com.example.batuguntingkertas.fragments.adapters.ViewPagerAdapter
+import com.example.batuguntingkertas.R
+import com.example.batuguntingkertas.ui.play.fragments.HistoryFragment
+import com.example.batuguntingkertas.ui.play.fragments.HomeFragment
+import com.example.batuguntingkertas.ui.play.fragments.MemberFragment
+import com.example.batuguntingkertas.ui.play.fragments.adapters.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayout
 
 class PemainPemainActivity : AppCompatActivity() {
