@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".MainActivity">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#DDE9F6"
+    tools:context=".ui.menu.Info">
 
     <View
         android:id="@+id/view"
@@ -146,29 +145,21 @@
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:src="@drawable/ic_baseline_home"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.369"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.929" />
+        app:layout_constraintEnd_toStartOf="@id/tvSeri"
+        app:layout_constraintTop_toBottomOf="@id/ivSplash1" />
 
     <ImageView
         android:id="@+id/ivReset"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:src="@drawable/ic_baseline_autorenew"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.722"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.929" />
+       app:layout_constraintTop_toBottomOf="@id/ivSplash1"
+        app:layout_constraintStart_toEndOf="@id/tvSeri"/>
 
     <ImageView
         android:id="@+id/ivSplash1"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         android:layout_marginTop="400dp"
         android:src="@drawable/ic_splash_screen1"
         android:textColor="@color/white"
@@ -176,6 +167,5 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
