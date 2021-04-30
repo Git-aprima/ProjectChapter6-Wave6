@@ -14,12 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BatuGuntingKertas">
 
+        <activity android:name=".scoreHistory.ScoreHistoryActivity"></activity>
         <activity android:name=".ui.chatBotActivity.ChatBotActivity"></activity>
         <activity android:name=".ui.register.RegisterActivity"/>
-
-
         <activity android:name=".ui.play.PemainPemainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
