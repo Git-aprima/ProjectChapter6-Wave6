@@ -26,7 +26,7 @@ class LoginActivity : AppCompatActivity(), LoginNavigator {
         etUserPassword = findViewById(R.id.etUserPassword)
         btnSignUp = findViewById(R.id.btnSignUp)
         btnLoginDua = findViewById(R.id.btnLoginDua)
-        ivJudul = findViewById(R.id.ivJudul)
+        ivJudul = findViewById(R.id.ivJudulLogin)
         val login = LoginPresenter(this, this)
 
         Glide.with(this).load("https://i.ibb.co/HC5ZPgD/splash-screen1.png").into(ivJudul)
