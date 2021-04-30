@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Batu Gunting Kertas</string>
+    <string name="your_string_here"><u>Buat Akun</u></string>
+    <string name="password">Password</string>
+>>>>>>> eef50173534aa4ac6188f4cd10b79684d157504d
 </resources>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".ui.play.fragments.MemberFragment">
+
+    <ImageView
+        android:id="@+id/icWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:layout_marginBottom="90dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/memmber" />
+
+    <TextView
+        android:id="@+id/icMember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Game Member"
+        android:layout_marginTop="20dp"
+        android:textSize="22sp"
+        android:textColor="#0729E6"
+        android:fontFamily="@font/happy_school"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/icWelcome"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <ImageView
+        android:id="@+id/memmber"
+        android:layout_width="350dp"
+        android:layout_height="180dp"
+        android:src="@drawable/member"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/member1"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/corak"
+        app:layout_constraintBottom_toTopOf="@id/name"
+        app:layout_constraintEnd_toEndOf="@id/memmber" />
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/icon"
+        app:layout_constraintStart_toStartOf="@id/memmber"
+        app:layout_constraintTop_toTopOf="@id/memmber" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="60dp"
+        android:fontFamily="@font/no_virus"
+        android:text="Rendy Setiawan"
+        android:textColor="#ffff"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/memmber"
+        app:layout_constraintEnd_toEndOf="@id/memmber" />
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="60dp"
+        android:text="rendysetiawanadisaputra@gmail.com"
+        android:textColor="#ffff"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/memmber"
+        app:layout_constraintTop_toBottomOf="@id/name" />
+
+    <TextView
+        android:id="@+id/noTlp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="60dp"
+        android:text="0821 xxx xxx xx"
+        android:textColor="#ffff"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/memmber"
+        app:layout_constraintTop_toBottomOf="@id/email" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
