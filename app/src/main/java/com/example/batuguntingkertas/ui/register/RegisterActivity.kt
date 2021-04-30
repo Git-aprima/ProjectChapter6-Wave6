@@ -11,7 +11,6 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.batuguntingkertas.R
-import com.example.batuguntingkertas.ui.MainActivity
 import com.example.batuguntingkertas.ui.login.LoginActivity
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
@@ -73,7 +72,7 @@ class RegisterActivity : AppCompatActivity(), RegisterNavigator {
                 imageUri = resultUri
                 ivFotoProfil.setImageURI(resultUri)
             } else if (resultCode === CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                val error = result.error
+                result.error
             }
         }
     }
