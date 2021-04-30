@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Batu Gunting Kertas</string>
     <string name="your_string_here"><u>Buat Akun</u></string>
+    <string name="password">Password</string>
 </resources>
