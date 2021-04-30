@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.example.batuguntingkertas.R
 import com.example.batuguntingkertas.ui.MainActivity
 import com.example.batuguntingkertas.ui.login.LoginActivity
@@ -24,6 +25,7 @@ class RegisterActivity : AppCompatActivity(), RegisterNavigator {
     private lateinit var ivFotoProfil: ImageView
     private lateinit var btnUploadFoto: Button
     private lateinit var btnRegister: Button
+    private lateinit var ivJudul: ImageView
     var imageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +40,10 @@ class RegisterActivity : AppCompatActivity(), RegisterNavigator {
         etPassRegis = findViewById(R.id.etPassRegis)
         btnUploadFoto = findViewById(R.id.btnUploadFoto)
         btnRegister = findViewById(R.id.btnRegister)
+        ivJudul = findViewById(R.id.ivJudulRegis)
         val presenter = RegisterPresenter(this, this)
+
+        Glide.with(this).load("https://i.ibb.co/HC5ZPgD/splash-screen1.png").into(ivJudul)
 
         btnRegister.setOnClickListener {
             imageUri?.path
