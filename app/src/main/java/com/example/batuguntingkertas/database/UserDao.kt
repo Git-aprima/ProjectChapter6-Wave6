@@ -1,6 +1,7 @@
-package com.example.batuguntingkertas.data.database
+package com.example.batuguntingkertas.database
 
 import androidx.room.*
+import com.example.batuguntingkertas.database.UserEntity
 
 @Dao
 interface UserDao {

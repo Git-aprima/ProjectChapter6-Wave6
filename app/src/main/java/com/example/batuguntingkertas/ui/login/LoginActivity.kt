@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.*
 import com.bumptech.glide.Glide
 import com.example.batuguntingkertas.R
-import com.example.batuguntingkertas.data.database.DbUser
+import com.example.batuguntingkertas.database.DbUser
 import com.example.batuguntingkertas.ui.MainActivity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
