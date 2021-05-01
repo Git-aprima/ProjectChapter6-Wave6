@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#DDE9F6"
     tools:context=".ui.chatBotActivity.ChatBotActivity">
 
     <View
@@ -13,29 +14,33 @@
         android:background="@drawable/line_shape"
         android:backgroundTint="#A5E8E0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/ivBackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/back_button"
+        app:layout_constraintBottom_toBottomOf="@id/vLineAtas"
         app:layout_constraintStart_toStartOf="@id/vLineAtas"
-        app:layout_constraintTop_toTopOf="@id/vLineAtas"
-        app:layout_constraintBottom_toBottomOf="@id/vLineAtas"/>
+        app:layout_constraintTop_toTopOf="@id/vLineAtas" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvChat"
-        android:layout_width="416dp"
-        android:layout_height="628dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintBottom_toTopOf="@id/vLineBawah"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/vLineAtas"
-        tools:listitem="@layout/pesan_item"
-        tools:itemCount="15"/>
+        app:layout_constraintVertical_bias="0.343"
+        tools:listitem="@layout/pesan_item" />
 
     <View
         android:id="@+id/vLineBawah"
-        android:layout_width="413dp"
+        android:layout_width="match_parent"
         android:layout_height="67dp"
+        android:layout_marginTop="204dp"
         android:background="@drawable/line_shape"
         android:backgroundTint="#2F7E7B7B"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,25 +48,31 @@
 
     <EditText
         android:id="@+id/etPesanUser"
-        android:layout_width="300dp"
+        android:layout_width="280dp"
         android:layout_height="40dp"
-        android:background="@drawable/shaped_button"
         android:layout_marginLeft="10dp"
+        android:background="@drawable/shaped_button"
         android:backgroundTint="@color/white"
         android:hint="tulis pesan..."
         android:inputType="textShortMessage"
+        android:padding="3dp"
+        app:layout_constraintBottom_toBottomOf="@id/vLineBawah"
         app:layout_constraintStart_toStartOf="@id/vLineBawah"
-        app:layout_constraintTop_toTopOf="@id/vLineBawah"
-        app:layout_constraintBottom_toBottomOf="@id/vLineBawah"/>
+        app:layout_constraintTop_toTopOf="@id/vLineBawah" />
+
     <Button
         android:id="@+id/btnKirim"
         android:layout_width="80dp"
         android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="4dp"
         android:background="@drawable/shaped_button"
         android:backgroundTint="#0AA1B5"
         android:text="Kirim"
-        app:layout_constraintTop_toTopOf="@id/vLineBawah"
         app:layout_constraintBottom_toBottomOf="@id/vLineBawah"
-        app:layout_constraintEnd_toEndOf="@id/vLineBawah"/>
+        app:layout_constraintEnd_toEndOf="@id/vLineBawah"
+        app:layout_constraintTop_toTopOf="@id/vLineBawah"
+        app:layout_constraintVertical_bias="0.518" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

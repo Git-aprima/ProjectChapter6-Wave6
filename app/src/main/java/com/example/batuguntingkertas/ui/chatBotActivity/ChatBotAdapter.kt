@@ -10,9 +10,9 @@ import com.example.batuguntingkertas.ui.chatBotActivity.utils.KonteksPesan.KIRIM
 import com.example.batuguntingkertas.ui.chatBotActivity.utils.KonteksPesan.TERIMA
 
 @Suppress("DEPRECATION")
-class PesanAdapter : RecyclerView.Adapter<PesanAdapter.PesanViewHolder>() {
+class ChatBotAdapter : RecyclerView.Adapter<ChatBotAdapter.PesanViewHolder>() {
 
-    var listPesan = mutableListOf<PesanData>()
+    var listPesan = mutableListOf<ChatBotData>()
 
     inner class PesanViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         init {
@@ -53,8 +53,8 @@ class PesanAdapter : RecyclerView.Adapter<PesanAdapter.PesanViewHolder>() {
         return listPesan.size
     }
 
-    fun pesanMasuk(pesanData: PesanData){
-        this.listPesan.add(pesanData)
+    fun pesanMasuk(chatBotData: ChatBotData){
+        this.listPesan.add(chatBotData)
         notifyItemInserted(listPesan.size)
     }
 

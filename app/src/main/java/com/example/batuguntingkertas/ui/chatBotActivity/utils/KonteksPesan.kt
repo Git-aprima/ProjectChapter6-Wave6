@@ -1,4 +1,4 @@
-package com.example.batuguntingkertas.utils
+package com.example.batuguntingkertas.ui.chatBotActivity.utils
 
 object KonteksPesan {
 
