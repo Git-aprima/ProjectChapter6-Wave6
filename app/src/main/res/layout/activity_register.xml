@@ -42,20 +42,19 @@
             android:id="@+id/etUserNameRegis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Masukan Nama Anda" />
-
-        <EditText
-            android:id="@+id/etUmurRegis"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Masukan Umur Anda"
-            android:inputType="number" />
+            android:hint="Masukan Username Anda" />
 
         <EditText
             android:id="@+id/etEmailRegis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Masukan Email Anda" />
+
+        <EditText
+            android:id="@+id/etNameRegis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Masukan Nama Anda" />
 
         <EditText
             android:id="@+id/etPassRegis"

@@ -11,7 +11,7 @@
         android:id="@+id/vLineAtas"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:background="@drawable/line_shape"
+        android:background="@color/white"
         android:backgroundTint="#A5E8E0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="67dp"
         android:layout_marginTop="204dp"
-        android:background="@drawable/line_shape"
+        android:background="@color/white"
         android:backgroundTint="#2F7E7B7B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

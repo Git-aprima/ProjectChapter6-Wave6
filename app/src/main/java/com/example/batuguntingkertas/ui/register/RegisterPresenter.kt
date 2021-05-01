@@ -16,18 +16,12 @@ class RegisterPresenter(context: Context, private val navigator: RegisterNavigat
         userDao = db?.userDao()
     }
 
-    fun register(nama : String, umur : Int, email : String, password : String, image : String) {
-        val user = UserEntity(
-            nama,
-            umur,
-            email,
-            password,
-            image
-        )
+    fun register(username : String, email : String, password : String, name: String, image : String) {
+        val user = UserEntity(username, email, password, name, image )
         GlobalScope.launch {
-            val id = userDao?.insertUser(user)?:0
+            val id = userDao?.insertUser(user)
             GlobalScope.launch(Dispatchers.Main) {
-                if (id >= (1).toLong()) {
+                if (user.username.isNotEmpty() && user.email.isNotEmpty() && user.name.isNotEmpty() && user.password.isNotEmpty()) {
                     navigator.succesRegistrasi()
                 } else {
                     navigator.erroRegistrasi()

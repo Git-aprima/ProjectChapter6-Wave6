@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
     android:background="#DDE9F6"
+    android:paddingBottom="8dp"
     tools:context=".ui.menu.Info">
 
     <View
@@ -97,10 +98,9 @@
         android:text="Menang"
         android:textColor="@color/white"
         android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvScore"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="0dp"/>
+        app:layout_constraintBottom_toTopOf="@id/vMenang"
+        app:layout_constraintEnd_toEndOf="@id/tvScoreMenang"
+        app:layout_constraintStart_toStartOf="@id/tvScoreMenang" />
 
     <TextView
         android:id="@+id/tvSeri"
@@ -109,11 +109,9 @@
         android:text="Seri"
         android:textColor="@color/white"
         android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvScore"
-        app:layout_constraintStart_toEndOf="@id/tvMenang"
-        android:layout_marginTop="0dp"/>
+        app:layout_constraintBottom_toTopOf="@id/vSeri"
+        app:layout_constraintEnd_toEndOf="@id/tvScoreSeri"
+        app:layout_constraintStart_toStartOf="@id/tvScoreSeri" />
 
     <TextView
         android:id="@+id/tvScoreSeri"
@@ -135,16 +133,15 @@
         android:text="Kalah"
         android:textColor="@color/white"
         android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvScore"
-        app:layout_constraintStart_toEndOf="@id/tvSeri"
-        android:layout_marginTop="0dp"/>
+        app:layout_constraintBottom_toTopOf="@+id/vKalah"
+        app:layout_constraintEnd_toEndOf="@id/tvScoreKalah"
+        app:layout_constraintStart_toStartOf="@+id/tvScoreKalah" />
 
     <ImageView
         android:id="@+id/ivHome"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:src="@drawable/ic_baseline_home"
+        android:src="@drawable/ic_home"
         app:layout_constraintEnd_toStartOf="@id/tvSeri"
         app:layout_constraintTop_toBottomOf="@id/ivSplash1" />
 
@@ -152,9 +149,9 @@
         android:id="@+id/ivReset"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:src="@drawable/ic_baseline_autorenew"
-       app:layout_constraintTop_toBottomOf="@id/ivSplash1"
-        app:layout_constraintStart_toEndOf="@id/tvSeri"/>
+        android:src="@drawable/ic_baseline_refresh_24"
+        app:layout_constraintStart_toEndOf="@id/tvSeri"
+        app:layout_constraintTop_toBottomOf="@id/ivSplash1" />
 
     <ImageView
         android:id="@+id/ivSplash1"

@@ -1,7 +1,6 @@
 package com.example.batuguntingkertas.database
 
 import androidx.room.*
-import com.example.batuguntingkertas.database.UserEntity
 
 @Dao
 interface UserDao {
@@ -17,6 +16,9 @@ interface UserDao {
     @Delete
     fun deleteUser(user: UserEntity): Int
 
-    @Query("SELECT * FROM UserEntity Where nama=:nama And password=:password")
-    fun getUser(nama : String, password: String): UserEntity
+    @Query("SELECT * FROM UserEntity Where name=:name And password=:password")
+    fun getUser(name : String, password: String): UserEntity
+
+    @Query("SELECT * FROM UserEntity")
+    fun getValue(): UserEntity
 }

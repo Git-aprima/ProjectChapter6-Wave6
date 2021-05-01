@@ -22,7 +22,7 @@
         tools:layout="@layout/frag_info" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.batuguntingkertas.ui.menu.Profile"
+        android:name="com.example.batuguntingkertas.ui.menu.profile.Profile"
         android:label="Profile"
         tools:layout="@layout/frag_profile" />
 </navigation>
