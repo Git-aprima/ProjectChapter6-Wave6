@@ -12,13 +12,15 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.batuguntingkertas.R
 import com.example.batuguntingkertas.ui.login.LoginActivity
+import com.example.batuguntingkertas.ui.menu.MenuActivity
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
+import kotlinx.android.synthetic.main.fragment_member.*
 
 class RegisterActivity : AppCompatActivity(), RegisterNavigator {
     private lateinit var ivKembali: ImageView
     private lateinit var etUserNameRegis: EditText
-    private lateinit var etUmurRegis: EditText
+    private lateinit var etNameRegis: EditText
     private lateinit var etEmailRegis: EditText
     private lateinit var etPassRegis: EditText
     private lateinit var ivFotoProfil: ImageView
@@ -34,7 +36,7 @@ class RegisterActivity : AppCompatActivity(), RegisterNavigator {
         ivKembali = findViewById(R.id.ivKembali)
         ivFotoProfil = findViewById(R.id.ivFotoProfil)
         etUserNameRegis = findViewById(R.id.etUserNameRegis)
-        etUmurRegis = findViewById(R.id.etUmurRegis)
+        etNameRegis = findViewById(R.id.etNameRegis)
         etEmailRegis = findViewById(R.id.etEmailRegis)
         etPassRegis = findViewById(R.id.etPassRegis)
         btnUploadFoto = findViewById(R.id.btnUploadFoto)
@@ -42,16 +44,18 @@ class RegisterActivity : AppCompatActivity(), RegisterNavigator {
         ivJudul = findViewById(R.id.ivJudulRegis)
         val presenter = RegisterPresenter(this, this)
 
+        var name = "admin"
         Glide.with(this).load("https://i.ibb.co/HC5ZPgD/splash-screen1.png").into(ivJudul)
 
         btnRegister.setOnClickListener {
             imageUri?.path
-            val nama = etUserNameRegis.text.toString()
-            val umur = etUmurRegis.text.toString().toInt()
+            val username = etUserNameRegis.text.toString()
             val email = etEmailRegis.text.toString()
+            name = etNameRegis.text.toString()
             val password = etPassRegis.text.toString()
-            val image = imageUri?.path.toString()
-            presenter.register(nama, umur, email, password, image)
+//            val image = imageUri?.path.toString()
+            val image = "ada"
+            presenter.register(username, email, password, name, image)
         }
 
         btnUploadFoto.setOnClickListener {
@@ -82,6 +86,8 @@ class RegisterActivity : AppCompatActivity(), RegisterNavigator {
     }
 
     override fun succesRegistrasi() {
-        startActivity(Intent(this, LoginActivity::class.java))
+        val intent = Intent(this, MenuActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
