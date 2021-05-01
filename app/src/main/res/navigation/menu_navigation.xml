@@ -12,7 +12,7 @@
         tools:layout="@layout/frag_home" />
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.batuguntingkertas.ui.menu.Search"
+        android:name="com.example.batuguntingkertas.ui.menu.search.Search"
         android:label="Search"
         tools:layout="@layout/frag_search" />
     <fragment
