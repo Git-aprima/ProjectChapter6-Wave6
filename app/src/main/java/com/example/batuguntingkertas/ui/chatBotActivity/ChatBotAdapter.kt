@@ -6,12 +6,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.batuguntingkertas.R
-import com.example.batuguntingkertas.utils.KonteksPesan.ID_KIRIM
-import com.example.batuguntingkertas.utils.KonteksPesan.ID_TERIMA
+import com.example.batuguntingkertas.ui.chatBotActivity.utils.KonteksPesan.KIRIM
+import com.example.batuguntingkertas.ui.chatBotActivity.utils.KonteksPesan.TERIMA
 
+@Suppress("DEPRECATION")
 class PesanAdapter : RecyclerView.Adapter<PesanAdapter.PesanViewHolder>() {
 
-    var listPesan = mutableListOf<Pesan>()
+    var listPesan = mutableListOf<PesanData>()
 
     inner class PesanViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         init {
@@ -30,14 +31,14 @@ class PesanAdapter : RecyclerView.Adapter<PesanAdapter.PesanViewHolder>() {
         val posisiPesan = listPesan[position]
 
         when(posisiPesan.id){
-            ID_KIRIM -> {
+            KIRIM -> {
                 holder.itemView.findViewById<TextView>(R.id.tvPesanUser).apply {
                     text = posisiPesan.pesan
                     visibility = View.VISIBLE
                 }
                 holder.itemView.findViewById<TextView>(R.id.tvPesanBot).visibility = View.GONE
             }
-            ID_TERIMA -> {
+            TERIMA -> {
                 holder.itemView.findViewById<TextView>(R.id.tvPesanBot).apply {
                     text = posisiPesan.pesan
                     visibility = View.VISIBLE
@@ -52,8 +53,8 @@ class PesanAdapter : RecyclerView.Adapter<PesanAdapter.PesanViewHolder>() {
         return listPesan.size
     }
 
-    fun pesanMasuk(pesan: Pesan){
-        this.listPesan.add(pesan)
+    fun pesanMasuk(pesanData: PesanData){
+        this.listPesan.add(pesanData)
         notifyItemInserted(listPesan.size)
     }
 
