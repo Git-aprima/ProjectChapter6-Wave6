@@ -15,6 +15,7 @@ import com.example.batuguntingkertas.database.DbUser
 import com.example.batuguntingkertas.ui.login.LoginActivity
 import com.example.batuguntingkertas.ui.menu.MenuActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -36,9 +37,10 @@ class Profile : Fragment() {
         val fabBack = view.findViewById<FloatingActionButton>(R.id.fabBack)
         val name = view.findViewById<TextView>(R.id.tvName)
 
-        GlobalScope.launch {
+        GlobalScope.launch(Dispatchers.IO) {
         val getName = activity?.let { DbUser.getInstance(it) }?.userDao()?.getValue()?.name
             name.text = getName
+
         }
 
 

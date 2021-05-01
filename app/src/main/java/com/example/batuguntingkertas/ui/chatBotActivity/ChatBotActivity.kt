@@ -33,9 +33,11 @@ class ChatBotActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_bot)
 
+
         rvChat = findViewById(R.id.rvChat)
         etPesanUser = findViewById(R.id.etPesanUser)
         btnKirim = findViewById(R.id.btnKirim)
+        ivBackButton = findViewById(R.id.ivBackButton)
         ivBackButton.setOnClickListener{
             startActivity(Intent(this,MenuActivity::class.java))
         }

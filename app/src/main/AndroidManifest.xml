@@ -17,7 +17,8 @@
         <activity android:name=".ui.play.VsCpu" />
         <activity android:name=".ui.play.VsPlayer" />
         <activity android:name=".ui.menu.MenuActivity"/>
-        <activity android:name=".ui.chatBotActivity.ChatBotActivity" />
+        <activity android:name=".ui.chatBotActivity.ChatBotActivity">
+        </activity>
         <activity android:name=".ui.register.RegisterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
