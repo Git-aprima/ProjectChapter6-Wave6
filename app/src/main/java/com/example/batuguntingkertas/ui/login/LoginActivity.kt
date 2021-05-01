@@ -7,7 +7,8 @@ import android.widget.*
 import com.bumptech.glide.Glide
 import com.example.batuguntingkertas.R
 import com.example.batuguntingkertas.database.DbUser
-import com.example.batuguntingkertas.ui.MainActivity
+import com.example.batuguntingkertas.ui.menu.MenuActivity
+import com.example.batuguntingkertas.ui.register.RegisterActivity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -26,7 +27,7 @@ class LoginActivity : AppCompatActivity(), LoginNavigator {
         etUserPassword = findViewById(R.id.etUserPassword)
         btnSignUp = findViewById(R.id.btnSignUp)
         btnLoginDua = findViewById(R.id.btnLoginDua)
-        ivJudul = findViewById(R.id.ivJudul)
+        ivJudul = findViewById(R.id.ivJudulLogin)
         val login = LoginPresenter(this, this)
 
         Glide.with(this).load("https://i.ibb.co/HC5ZPgD/splash-screen1.png").into(ivJudul)
@@ -41,7 +42,7 @@ class LoginActivity : AppCompatActivity(), LoginNavigator {
 
                 runOnUiThread {
                     if (user != null) {
-                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                        startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
                     } else {
                         Toast.makeText(
                             this@LoginActivity,
@@ -64,7 +65,7 @@ class LoginActivity : AppCompatActivity(), LoginNavigator {
     }
 
     override fun succesLogin() {
-        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+        startActivity(Intent(this@LoginActivity, MenuActivity::class.java))
 
     }
 }
