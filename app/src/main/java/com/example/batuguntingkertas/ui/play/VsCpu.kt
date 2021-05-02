@@ -230,11 +230,7 @@ class VsCpu : AppCompatActivity(), Callback {
                 val hasilPemenang = view.findViewById<TextView>(R.id.tvResult)
                 val name = intent.getStringExtra("Name")
                 hasilPemenang.setText(name + "\n MENANG!");
-
-                // score menang
-                val tvScoreMenang = view.findViewById<TextView>(R.id.tvScoreMenang)
-                val showPlayerScore = calculateScore(tvScoreMenang.inputType, 1)
-                tvScoreMenang.text=showPlayerScore.toString()
+                
 
 
                 val btnOk = view.findViewById<ImageView>(R.id.ivReset)
@@ -273,14 +269,8 @@ class VsCpu : AppCompatActivity(), Callback {
                 val name = intent.getStringExtra("cpu")
                 hasilPemenang.setText(name + "\n MENANG!");
 
-                // score kalah
-                val tvScoreKalah = view.findViewById<TextView>(R.id.tvScoreKalah)
-                val showPlayerScoreKalah = calculateScore(tvScoreKalah.inputType, 1)
-                tvScoreKalah.text=showPlayerScoreKalah.toString()
-
 
                 val btnOk = view.findViewById<ImageView>(R.id.ivReset)
-
 
                 btnOk.setOnClickListener {
                     dialog?.dismiss()
@@ -315,10 +305,6 @@ class VsCpu : AppCompatActivity(), Callback {
                 val name = intent.getStringExtra("seri")
                 hasilPemenang.setText(name);
 
-                // score seri
-                val tvScoreSeri = view.findViewById<TextView>(R.id.tvScoreSeri)
-                val showPlayerScoreSeri = calculateScore(tvScoreSeri.inputType, 1)
-                tvScoreSeri.text=showPlayerScoreSeri.toString()
 
                 val btnOk = view.findViewById<ImageView>(R.id.ivReset)
 
@@ -333,13 +319,6 @@ class VsCpu : AppCompatActivity(), Callback {
                 }
             }
         }
-    }
-
-    fun calculateScore(_lastScore: Int, _addScoreBy: Int): Int {
-        var lastScore = _lastScore
-
-        lastScore += _addScoreBy
-        return lastScore
     }
 
 
