@@ -49,13 +49,22 @@ class RegisterActivity : AppCompatActivity(), RegisterNavigator {
             startActivity(Intent(this, LoginActivity::class.java))
         }
         btnRegister.setOnClickListener {
-            imageUri?.path
-            val username = etUserNameRegis.text.toString()
-            val email = etEmailRegis.text.toString()
-            name = etNameRegis.text.toString()
-            val password = etPassRegis.text.toString()
-            val image = imageUri?.path.toString()
-            presenter.register(username, email, password, name, image)
+            when {
+                etUserNameRegis.text.toString().isEmpty() -> {
+                    etUserNameRegis.error = "Username Belum Diisi"
+                }
+                etPassRegis.text.toString().isEmpty() -> {
+                    etPassRegis.error = "Password Belum Diisi"
+                }
+                else -> {
+                    val username = etUserNameRegis.text.toString()
+                    val email = etEmailRegis.text.toString()
+                    name = etNameRegis.text.toString()
+                    val password = etPassRegis.text.toString()
+                    val image = imageUri?.path.toString()
+                    presenter.register(username, email, password, name, image)
+                }
+            }
         }
 
         btnUploadFoto.setOnClickListener {
