@@ -231,9 +231,6 @@ class VsCpu : AppCompatActivity(), Callback {
                 val name = intent.getStringExtra("Name")
                 hasilPemenang.setText(name + "\n MENANG!");
 
-              /*
-                val tvScoreMenang = view.findViewById<TextView>(R.id.tvScoreMenang)*/
-
 
                 val btnOk = view.findViewById<ImageView>(R.id.ivReset)
 
