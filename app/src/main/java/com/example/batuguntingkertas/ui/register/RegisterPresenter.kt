@@ -24,7 +24,7 @@ class RegisterPresenter(context: Context, private val navigator: RegisterNavigat
                 if (user.username.isNotEmpty() && user.email.isNotEmpty() && user.name.isNotEmpty() && user.password.isNotEmpty()) {
                     navigator.succesRegistrasi()
                 } else {
-                    navigator.erroRegistrasi()
+                    navigator.errorRegistrasi()
                 }
             }
         }

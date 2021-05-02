@@ -1,6 +1,6 @@
 package com.example.batuguntingkertas.ui.register
 
 interface RegisterNavigator {
-    fun erroRegistrasi ()
+    fun errorRegistrasi ()
     fun succesRegistrasi ()
 }
