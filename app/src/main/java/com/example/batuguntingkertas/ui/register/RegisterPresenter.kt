@@ -1,9 +1,9 @@
 package com.example.batuguntingkertas.ui.register
 
 import android.content.Context
-import com.example.batuguntingkertas.database.DbUser
-import com.example.batuguntingkertas.database.UserDao
-import com.example.batuguntingkertas.database.UserEntity
+import com.example.batuguntingkertas.data.database.DbUser
+import com.example.batuguntingkertas.data.database.UserDao
+import com.example.batuguntingkertas.data.database.UserEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -24,7 +24,7 @@ class RegisterPresenter(context: Context, private val navigator: RegisterNavigat
                 if (user.username.isNotEmpty() && user.email.isNotEmpty() && user.name.isNotEmpty() && user.password.isNotEmpty()) {
                     navigator.succesRegistrasi()
                 } else {
-                    navigator.erroRegistrasi()
+                    navigator.errorRegistrasi()
                 }
             }
         }

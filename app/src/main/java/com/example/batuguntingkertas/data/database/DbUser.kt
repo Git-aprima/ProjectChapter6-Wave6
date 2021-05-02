@@ -1,4 +1,4 @@
-package com.example.batuguntingkertas.database
+package com.example.batuguntingkertas.data.database
 
 import android.content.Context
 import androidx.room.Database

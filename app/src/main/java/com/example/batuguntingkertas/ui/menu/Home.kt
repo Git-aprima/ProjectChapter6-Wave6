@@ -31,7 +31,7 @@ class Home : Fragment() {
         val exit = view.findViewById<Button>(R.id.btnExit)
         val chat = view.findViewById<FloatingActionButton>(R.id.fabChat)
 
-        play.setOnClickListener { startActivity(Intent(activity, VsCpu::class.java)) }
+        play.setOnClickListener { startActivity(Intent(activity,VsC::class.java)) }
         multiPlayer.setOnClickListener { startActivity(Intent(activity, VsPlayer::class.java)) }
         setting.setOnClickListener { }
         exit.setOnClickListener { System.exit(-1) }

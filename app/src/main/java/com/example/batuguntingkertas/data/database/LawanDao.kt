@@ -1,4 +1,4 @@
-package com.example.batuguntingkertas.database
+package com.example.batuguntingkertas.data.database
 
 import androidx.room.*
 
@@ -12,7 +12,7 @@ interface LawanDao {
     fun insertLawan(user: LawanEntity): Long
 
     @Update
-    fun updateLawan(user:LawanEntity): Int
+    fun updateLawan(user: LawanEntity): Int
 
     @Delete
     fun deleteLawan(user: UserEntity): Int
