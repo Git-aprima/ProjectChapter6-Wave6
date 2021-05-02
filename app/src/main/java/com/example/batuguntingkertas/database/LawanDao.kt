@@ -9,12 +9,12 @@ interface LawanDao {
     fun getAllLawan(): List<LawanEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertLawan(user: LawanEntity): Long
+    fun insertLawan(lawan : LawanEntity): Long
 
     @Update
-    fun updateLawan(user:LawanEntity): Int
+    fun updateLawan(lawan :LawanEntity): Int
 
     @Delete
-    fun deleteLawan(user: UserEntity): Int
+    fun deleteLawan(lawan : LawanEntity): Int
 
 }

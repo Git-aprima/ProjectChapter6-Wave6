@@ -5,20 +5,23 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [UserEntity::class] , version = 1)
+@Database(entities = [UserEntity::class,LawanEntity::class] , version = 1)
 abstract class DbUser : RoomDatabase() {
     abstract fun userDao(): UserDao
+    abstract fun lawanDao(): LawanDao
 
     companion object {
         private var INSTANCE: DbUser? = null
 
-        fun getInstance(context: Context): DbUser? {
+        fun getInstance(context: Context?): DbUser? {
             if (INSTANCE == null) {
                 synchronized(DbUser::class) {
-                    INSTANCE = Room.databaseBuilder(
-                        context.applicationContext,
-                        DbUser::class.java, "User.db"
-                    ).build()
+                    if (context != null) {
+                        INSTANCE = Room.databaseBuilder(
+                            context.applicationContext,
+                            DbUser::class.java, "User.db"
+                        ).build()
+                    }
                 }
             }
             return INSTANCE

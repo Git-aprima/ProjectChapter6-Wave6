@@ -15,7 +15,7 @@ import com.example.batuguntingkertas.ui.login.LoginActivity
 import com.example.batuguntingkertas.ui.menu.MenuActivity
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
-import kotlinx.android.synthetic.main.fragment_member.*
+
 
 class RegisterActivity : AppCompatActivity(), RegisterNavigator {
     private lateinit var ivKembali: ImageView
