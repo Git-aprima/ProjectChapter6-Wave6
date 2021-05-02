@@ -11,7 +11,6 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.batuguntingkertas.R
-import com.example.batuguntingkertas.ui.login.LoginActivity
 import com.example.batuguntingkertas.ui.menu.MenuActivity
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView

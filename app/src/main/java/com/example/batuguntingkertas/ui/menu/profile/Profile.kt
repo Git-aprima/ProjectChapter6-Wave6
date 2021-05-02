@@ -2,8 +2,6 @@ package com.example.batuguntingkertas.ui.menu.profile
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +9,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import com.example.batuguntingkertas.R
-import com.example.batuguntingkertas.database.DbUser
+import com.example.batuguntingkertas.data.database.DbUser
+import com.example.batuguntingkertas.data.lokal.SharedPref
 import com.example.batuguntingkertas.ui.login.LoginActivity
 import com.example.batuguntingkertas.ui.menu.MenuActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -36,22 +35,19 @@ class Profile : Fragment() {
         val btnLogout = view.findViewById<Button>(R.id.btnLogout)
         val fabBack = view.findViewById<FloatingActionButton>(R.id.fabBack)
         val name = view.findViewById<TextView>(R.id.tvName)
+        val pref = activity?.let { SharedPref(it) }
 
         GlobalScope.launch(Dispatchers.IO) {
         val getName = activity?.let { DbUser.getInstance(it) }?.userDao()?.getValue()?.name
             name.text = getName
-
         }
-
-
-
-
 
         btnEdit.setOnClickListener {
             startActivity(Intent(activity, EditProfile::class.java))
         }
 
         btnLogout.setOnClickListener {
+            pref?.isLogin = false
             startActivity(Intent(activity, LoginActivity::class.java))
         }
 
