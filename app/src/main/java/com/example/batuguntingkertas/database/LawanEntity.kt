@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class LawanEntity(
-    @ColumnInfo(name = "namaLawan") val namaLawan: String,
-    @ColumnInfo(name = "emailLawan") val emailLawan: String,
+    @ColumnInfo(name = "nama") val nama: String,
+    @ColumnInfo(name = "email") val email: String,
     @PrimaryKey(autoGenerate = true) val idLawan: Int = 0
 )
