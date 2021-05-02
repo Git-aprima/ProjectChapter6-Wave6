@@ -7,9 +7,9 @@ import android.widget.*
 import com.bumptech.glide.Glide
 import com.example.batuguntingkertas.R
 import com.example.batuguntingkertas.data.database.DbUser
+import com.example.batuguntingkertas.data.datalokal.SharedPreferences
 import com.example.batuguntingkertas.ui.MainActivity
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.example.batuguntingkertas.ui.register.RegisterActivity
 
 class LoginActivity : AppCompatActivity(), LoginNavigator {
 
@@ -28,34 +28,27 @@ class LoginActivity : AppCompatActivity(), LoginNavigator {
         btnLoginDua = findViewById(R.id.btnLoginDua)
         ivJudul = findViewById(R.id.ivJudulLogin)
         val login = LoginPresenter(this, this)
+        val pref = SharedPreferences (this)
 
         Glide.with(this).load("https://i.ibb.co/HC5ZPgD/splash-screen1.png").into(ivJudul)
 
-        //Tanpa Pattern MVP dulu
-        val mDb = DbUser.getInstance(this)
-
-        btnSignUp.setOnClickListener {
-            GlobalScope.launch {
-                val user = mDb?.userDao()
-                    ?.getUser(etUserName.text.toString(), etUserPassword.text.toString())
-
-                runOnUiThread {
-                    if (user != null) {
-                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                    } else {
-                        Toast.makeText(
-                            this@LoginActivity,
-                            "Username atau Password Anda Salah",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-            }
-        }
         btnLoginDua.setOnClickListener {
+            if (etUserName.text.toString().isEmpty()){
+                etUserPassword.error= "Username Belum Diisi"
+            }else if (etUserPassword.text.toString().isEmpty()){
+                etUserPassword.error = "Password harus Diisi"
+            } else {
             val nama = etUserName.text.toString()
             val password = etUserPassword.text.toString()
             login.login(nama, password)
+                pref.username = nama
+                pref.sandi = password
+                pref.isLogin= true
+            }
+        }
+
+        btnSignUp.setOnClickListener {
+            startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
         }
     }
 
@@ -64,6 +57,7 @@ class LoginActivity : AppCompatActivity(), LoginNavigator {
     }
 
     override fun succesLogin() {
+
         startActivity(Intent(this@LoginActivity, MainActivity::class.java))
 
     }
