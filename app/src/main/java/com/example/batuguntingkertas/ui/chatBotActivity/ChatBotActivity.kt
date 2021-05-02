@@ -12,11 +12,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.batuguntingkertas.R
 import com.example.batuguntingkertas.ui.chatBotActivity.utils.BotRespon
 import com.example.batuguntingkertas.ui.chatBotActivity.utils.KonteksPesan.KIRIM
+import com.example.batuguntingkertas.ui.chatBotActivity.utils.KonteksPesan.MAIN
+import com.example.batuguntingkertas.ui.chatBotActivity.utils.KonteksPesan.MAIN_KOM
+import com.example.batuguntingkertas.ui.chatBotActivity.utils.KonteksPesan.MAIN_PEMAIN
 import com.example.batuguntingkertas.ui.chatBotActivity.utils.KonteksPesan.OPEN_SEARCH
 import com.example.batuguntingkertas.ui.chatBotActivity.utils.KonteksPesan.OPEN_TUTORIAL
 import com.example.batuguntingkertas.ui.chatBotActivity.utils.KonteksPesan.TERIMA
 import com.example.batuguntingkertas.ui.chatBotActivity.utils.Time
 import com.example.batuguntingkertas.ui.menu.MenuActivity
+import com.example.batuguntingkertas.ui.play.VsCpu
+import com.example.batuguntingkertas.ui.play.VsPlayer
 import kotlinx.coroutines.*
 
 class ChatBotActivity : AppCompatActivity() {
@@ -36,6 +41,7 @@ class ChatBotActivity : AppCompatActivity() {
         rvChat = findViewById(R.id.rvChat)
         etPesanUser = findViewById(R.id.etPesanUser)
         btnKirim = findViewById(R.id.btnKirim)
+        ivBackButton = findViewById(R.id.ivBackButton)
         ivBackButton.setOnClickListener{
             startActivity(Intent(this,MenuActivity::class.java))
         }
@@ -108,6 +114,15 @@ class ChatBotActivity : AppCompatActivity() {
                         val link = Intent(Intent.ACTION_VIEW)
                         link.data = Uri.parse("https://www.youtube.com/watch?v=Cl8EwB1DH6k")
                         startActivity(link)
+                    }
+                    MAIN -> {
+                        startActivity(Intent(this@ChatBotActivity, MenuActivity::class.java))
+                    }
+                    MAIN_PEMAIN ->{
+                        startActivity(Intent(this@ChatBotActivity, VsPlayer::class.java))
+                    }
+                    MAIN_KOM ->{
+                        startActivity(Intent(this@ChatBotActivity, VsCpu::class.java))
                     }
                 }
 
