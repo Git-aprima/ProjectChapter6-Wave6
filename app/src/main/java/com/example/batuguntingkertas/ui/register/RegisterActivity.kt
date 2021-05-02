@@ -47,6 +47,9 @@ class RegisterActivity : AppCompatActivity(), RegisterNavigator {
         var name = "admin"
         Glide.with(this).load("https://i.ibb.co/HC5ZPgD/splash-screen1.png").into(ivJudul)
 
+        ivKembali.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
         btnRegister.setOnClickListener {
             imageUri?.path
             val username = etUserNameRegis.text.toString()
