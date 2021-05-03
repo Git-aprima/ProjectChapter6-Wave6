@@ -1,9 +1,9 @@
 package com.example.batuguntingkertas.data.lokal
 
 import android.content.Context
-import com.example.batuguntingkertas.ui.menu.profile.editProfile.EditProfile
+import com.example.batuguntingkertas.ui.menu.profile.editProfile.EditProfileActivity
 
-class SharedPref(context: EditProfile) {
+class SharedPref(context: EditProfileActivity) {
     private val pref = context.getSharedPreferences("myData", Context.MODE_PRIVATE)
 
     private val LOGIN = "LOGIN"

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.batuguntingkertas">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -13,29 +14,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BatuGuntingKertas">
-        <activity android:name=".ui.menu.Friends.FriendsActivity"/>
+        <activity android:name=".ui.menu.profile.editProfile.EditProfileActivity"></activity>
+        <activity android:name=".ui.menu.Friends.FriendsActivity" />
         <activity android:name=".ui.menu.profile.ProfileActivity" />
         <activity android:name=".ui.menu.Friends.EditFriends" />
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".DialogActivity" />
-        <activity android:name=".ui.menu.profile.EditProfile" />
         <activity android:name=".ui.play.VsCpu" />
-        <activity android:name=".ui.play.VsPlayer" >
+        <activity android:name=".ui.play.VsPlayer">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".DialogActivity" />
-        <activity android:name=".ui.menu.profile.editProfile.EditProfile" />
-        <activity android:name=".ui.play.VsCpu" />
-        <activity android:name=".ui.play.VsPlayer" />
-        <activity android:name=".ui.menu.MenuActivity"/>
+        <activity android:name=".ui.menu.MenuActivity" />
         <activity android:name=".ui.chatBotActivity.ChatBotActivity" />
         <activity android:name=".ui.register.RegisterActivity" />
-
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />

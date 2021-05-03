@@ -10,7 +10,7 @@ import com.example.batuguntingkertas.data.database.BigDatabase
 import com.example.batuguntingkertas.data.lokal.SharedPref
 import com.example.batuguntingkertas.ui.login.LoginActivity
 import com.example.batuguntingkertas.ui.menu.MenuActivity
-import com.example.batuguntingkertas.ui.menu.profile.editProfile.EditProfile
+import com.example.batuguntingkertas.ui.menu.profile.editProfile.EditProfileActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -25,11 +25,7 @@ class ProfileActivity : AppCompatActivity() {
         val btnLogout = findViewById<Button>(R.id.btnLogout)
         val fabBack = findViewById<FloatingActionButton>(R.id.fabBack)
         val name = findViewById<TextView>(R.id.tvName)
-        val pref = let {
-            SharedPref(
-                it
-            )
-        }
+        val pref = SharedPref(this)
 
         GlobalScope.launch(Dispatchers.IO) {
             val getName =
@@ -38,7 +34,7 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         btnEdit.setOnClickListener {
-            startActivity(Intent(this, EditProfile::class.java))
+            startActivity(Intent(this, EditProfileActivity::class.java))
         }
 
         btnLogout.setOnClickListener {

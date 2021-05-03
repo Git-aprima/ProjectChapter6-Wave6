@@ -1,7 +1,6 @@
 package com.example.batuguntingkertas.ui.menu.profile.editProfile
 
 import android.content.Context
-import android.content.SharedPreferences
 import com.example.batuguntingkertas.data.database.BigDatabase
 import com.example.batuguntingkertas.data.database.UserDao
 import com.example.batuguntingkertas.data.database.UserEntity
@@ -13,7 +12,7 @@ import kotlinx.coroutines.launch
 class EditProfilePresenter(context: Context, private val edit: EditProfileNavigator) {
 
     private var userDao: UserDao? = null
-    val pref = SharedPref(context as EditProfile)
+    val pref = SharedPref(context as EditProfileActivity)
 
     init {
         val userDb = BigDatabase.getInstance(context)
