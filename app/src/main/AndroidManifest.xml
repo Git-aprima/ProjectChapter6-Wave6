@@ -18,17 +18,21 @@
         <activity android:name=".ui.landing_page.onboardingscreen.IntroActivity" ></activity>
         <activity android:name=".ui.menu.Friends.EditFriends" />
         <activity
-            android:name=".ui.login.LoginActivity" >
+            android:name=".ui.login.LoginActivity" />
+
+        <activity android:name=".DialogActivity" />
+        <activity android:name=".ui.menu.profile.EditProfile" />
+        <activity android:name=".ui.play.VsCpu" >
+
+        </activity>
+        <activity android:name=".ui.play.VsPlayer" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".DialogActivity" />
-        <activity android:name=".ui.menu.profile.EditProfile" />
-        <activity android:name=".ui.play.VsCpu" />
-        <activity android:name=".ui.play.VsPlayer" />
         <activity android:name=".ui.menu.MenuActivity"/>
         <activity android:name=".ui.chatBotActivity.ChatBotActivity" />
         <activity android:name=".ui.register.RegisterActivity" />

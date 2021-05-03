@@ -1,5 +1,6 @@
 package com.example.batuguntingkertas.ui.play
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -22,6 +23,20 @@ class VsPlayer : AppCompatActivity(), Callback {
     private lateinit var refresh: ImageView
     private lateinit var home: ImageView
     private lateinit var tvTimer2: TextView
+    private lateinit var scorePemain: TextView
+    private lateinit var scoreCpu: TextView
+    private lateinit var scoreSeri: TextView
+    private  lateinit var tvScoreMenang: TextView
+    private lateinit var tvScoreSeri: TextView
+    private lateinit var tvScoreKalah: TextView
+
+    var scoreMenang = 0
+    var scoreKalah = 0
+    var scoreSama = 0
+
+    var scoreDlgMenang = 0
+    var scoreDlgKalah = 0
+    var scoreDlgSama = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +47,10 @@ class VsPlayer : AppCompatActivity(), Callback {
         refresh = findViewById(R.id.refresh)
         val controller = Controller(this)
         home = findViewById(R.id.ivHome)
-        tvTimer2 = findViewById(R.id.tvTimer2)
+        tvTimer2 = findViewById(R.id.tvTimer)
+        scorePemain = findViewById(R.id.scorePemain)
+        scoreCpu = findViewById(R.id.scoreCpu)
+        scoreSeri = findViewById(R.id.scoreSeri)
 
         var player1 = 0
         var player2 = 0
@@ -201,92 +219,96 @@ class VsPlayer : AppCompatActivity(), Callback {
     }
 
     override fun kirimStatus(status: String) {
-        when {
-            status.contains("1") -> {
-                imageStatus.setImageResource(R.drawable.p1menang)
-                // Custom Dialog
-                val view = LayoutInflater.from(this).inflate(R.layout.activity_dialog, null, false)
-                val alert = AlertDialog.Builder(this)
-                alert.setView(view)
-                alert.setCancelable(false)
+        scorePermainan(status)
 
-                val dialog = alert.create()
-                dialog.show()
-                val hasilPemenang = view.findViewById<TextView>(R.id.tvResult)
-                val name = intent.getStringExtra("Name")
-                hasilPemenang.text = "$name\n MENANG!"
+        // Custom Dialog
+        val view = LayoutInflater.from(this).inflate(R.layout.activity_dialog, null, false)
+        val alert = AlertDialog.Builder(this)
+        alert.setView(view)
+        alert.setCancelable(false)
 
-                val btnOk = view.findViewById<ImageView>(R.id.ivReset)
-
-
-                btnOk.setOnClickListener {
-                    dialog.dismiss()
-                }
-
-                val btnMenu = view.findViewById<ImageView>(R.id.ivHome)
-                btnMenu.setOnClickListener {
-                    finish()
-                }
+        val dialog = alert.create()
+        dialog.show()
+        val hasilPemenang = view.findViewById<TextView>(R.id.tvResult)
+        val name = intent.getStringExtra("Name")
+        val hasilPemenang1 =
+            if (status == "Player 1 Winner") {
+                "$name \n Menang"
+            } else {
+                status
             }
-            status.contains("2") -> {
-                imageStatus.setImageResource(R.drawable.p2menang)
-
-                // Custom Dialog
-                val view = LayoutInflater.from(this).inflate(R.layout.activity_dialog, null, false)
-                val alert = AlertDialog.Builder(this)
-                alert.setView(view)
-                alert.setCancelable(false)
-
-                val dialog = alert.create()
-                dialog.show()
-
-                val hasilPemenang = view.findViewById<TextView>(R.id.tvResult)
-                intent.putExtra("cpu", "Pemain 2")
-                val name = intent.getStringExtra("cpu")
-                hasilPemenang.text = "$name\n MENANG!"
-
-                val btnOk = view.findViewById<ImageView>(R.id.ivReset)
+        hasilPemenang.setText(hasilPemenang1);
 
 
-                btnOk.setOnClickListener {
-                    dialog.dismiss()
-                }
+        val btnOk = view.findViewById<ImageView>(R.id.ivReset)
+        btnOk.setOnClickListener {
+            dialog?.dismiss()
+        }
 
-                val btnMenu = view.findViewById<ImageView>(R.id.ivHome)
-                btnMenu.setOnClickListener {
-                    finish()
-                }
+        val btnMenu = view.findViewById<ImageView>(R.id.ivHome)
+        btnMenu.setOnClickListener {
+            finish()
+        }
+
+        tvScoreMenang = view.findViewById<TextView>(R.id.tvScoreMenang)
+        tvScoreKalah = view.findViewById<TextView>(R.id.tvScoreKalah)
+        tvScoreSeri = view.findViewById<TextView>(R.id.tvScoreSeri)
+
+        scoreDialog(status)
+    }
+    fun scoreDialog(status: String) {
+        when (status) {
+            "Player 1 Winner" -> {
+                scoreDlgMenang++
+                tvScoreMenang.text = scoreDlgMenang.toString()
+
+                var sharedPreferences = getSharedPreferences("sharePref", Context.MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+                editor.putInt("SCORE",scoreDlgMenang)
+                    .apply()
+                val scr = getSharedPreferences("SCORE",0)
+                //tvScoreMenang.setText(scr.toString())
+            }
+            "Player 2 Winner" -> {
+                scoreDlgKalah++
+                tvScoreKalah.text = scoreDlgKalah.toString()
+
+                var sharedPreferences = getSharedPreferences("sharePref", Context.MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+                editor.putInt("SCORE",scoreDlgKalah)
+                    .apply()
+                val scr = getSharedPreferences("SCORE",0)
+                //tvScoreKalah.text = scr.toString()
 
 
             }
-            status.contains("w") -> {
-                imageStatus.setImageResource(R.drawable.draw)
+            "Draw" -> {
+                scoreDlgSama++
+                tvScoreSeri.text = scoreDlgSama.toString()
 
-                // Custom Dialog
-                val view = LayoutInflater.from(this).inflate(R.layout.activity_dialog, null, false)
-                val alert = AlertDialog.Builder(this)
-                alert.setView(view)
-                alert.setCancelable(false)
+                var sharedPreferences = getSharedPreferences("sharePref", Context.MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+                editor.putInt("SCORE",scoreDlgSama)
+                    .apply()
+                val scr = getSharedPreferences("SCORE",0)
+                // tvScoreSeri.text = scr.toString()
+            }
+        }
+    }
 
-                val dialog = alert.create()
-                dialog.show()
-
-                val hasilPemenang = view.findViewById<TextView>(R.id.tvResult)
-                intent.putExtra("seri", "SERI!")
-                val name = intent.getStringExtra("seri")
-                hasilPemenang.text = name
-
-                val btnOk = view.findViewById<ImageView>(R.id.ivReset)
-
-
-                btnOk.setOnClickListener {
-                    dialog.dismiss()
-                }
-
-                val btnMenu = view.findViewById<ImageView>(R.id.ivHome)
-                btnMenu.setOnClickListener {
-                    finish()
-                }
+    private fun scorePermainan(status: String) {
+        when (status) {
+            "Player 1 Winner" -> {
+                scoreMenang++
+                scorePemain.text = scoreMenang.toString()
+            }
+            "Player 2 Winner" -> {
+                scoreKalah++
+                scoreCpu.text = scoreKalah.toString()
+            }
+            "Draw" -> {
+                scoreSama++
+                scoreSeri.text = scoreSama.toString()
             }
         }
     }
