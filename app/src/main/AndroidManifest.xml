@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".DialogActivity" />
-        <activity android:name=".ui.menu.profile.EditProfile" />
+        <activity android:name=".ui.menu.profile.editProfile.EditProfile" />
         <activity android:name=".ui.play.VsCpu" />
         <activity android:name=".ui.play.VsPlayer" />
         <activity android:name=".ui.menu.MenuActivity"/>

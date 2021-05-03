@@ -10,6 +10,7 @@ import com.example.batuguntingkertas.data.database.BigDatabase
 import com.example.batuguntingkertas.data.lokal.SharedPref
 import com.example.batuguntingkertas.ui.login.LoginActivity
 import com.example.batuguntingkertas.ui.menu.MenuActivity
+import com.example.batuguntingkertas.ui.menu.profile.editProfile.EditProfile
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
