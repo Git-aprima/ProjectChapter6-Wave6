@@ -16,7 +16,8 @@
         <activity android:name=".ui.menu.Friends.FriendsActivity"></activity>
         <activity android:name=".ui.menu.profile.ProfileActivity" />
         <activity android:name=".ui.menu.Friends.EditFriends" />
-        <activity android:name=".ui.login.LoginActivity" >
+        <activity
+            android:name=".ui.login.LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
