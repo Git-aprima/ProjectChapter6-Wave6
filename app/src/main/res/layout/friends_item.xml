@@ -48,13 +48,21 @@
 
     <ImageView
         android:id="@+id/tvEdit"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginTop="15dp"
+        android:src="@drawable/ic_edit"
+        app:layout_constraintEnd_toStartOf="@id/tvDelete"
+        app:layout_constraintTop_toTopOf="@id/ivMember"/>
+
+    <ImageView
+        android:id="@+id/tvDelete"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
-        android:src="@drawable/ic_edit"
-        app:layout_constraintEnd_toEndOf="@id/ivMember"
-        app:layout_constraintTop_toTopOf="@id/ivMember" />
-
+        android:layout_marginTop="15dp"
+        android:src="@drawable/ic_delete"
+        app:layout_constraintTop_toTopOf="@id/ivMember"
+        app:layout_constraintEnd_toEndOf="@id/ivMember"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
