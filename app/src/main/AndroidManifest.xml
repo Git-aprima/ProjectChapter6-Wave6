@@ -27,6 +27,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".DialogActivity" />
+        <activity android:name=".ui.menu.profile.editProfile.EditProfile" />
+        <activity android:name=".ui.play.VsCpu" />
+        <activity android:name=".ui.play.VsPlayer" />
         <activity android:name=".ui.menu.MenuActivity"/>
         <activity android:name=".ui.chatBotActivity.ChatBotActivity" />
         <activity android:name=".ui.register.RegisterActivity" />
