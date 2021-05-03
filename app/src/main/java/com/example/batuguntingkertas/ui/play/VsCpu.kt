@@ -1,8 +1,11 @@
 package com.example.batuguntingkertas.ui.play
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.LayoutInflater
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -10,8 +13,10 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.batuguntingkertas.R
+import com.example.batuguntingkertas.ui.menu.MenuActivity
 import com.example.batuguntingkertas.ui.play.callback.Callback
 import com.example.batuguntingkertas.ui.play.controller.Controller
+import kotlinx.android.synthetic.main.fragment_member.*
 
 class VsCpu : AppCompatActivity(), Callback {
     private lateinit var imageStatus: ImageView
@@ -24,7 +29,8 @@ class VsCpu : AppCompatActivity(), Callback {
     private lateinit var refresh: ImageView
     private lateinit var pemain: TextView
     private lateinit var home: ImageView
-    var Nama: String? = null
+    private lateinit var tvTimer: TextView
+    private var Nama: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,12 +45,53 @@ class VsCpu : AppCompatActivity(), Callback {
         refresh = findViewById(R.id.refresh)
         imageStatus = findViewById(R.id.status)
         home = findViewById(R.id.ivHome)
+        tvTimer = findViewById(R.id.tvTimer)
 
+        val timer = object : CountDownTimer(30000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                val secondsRemaining = (millisUntilFinished % 60000) / 1000
+                val seconds = (secondsRemaining)
+                val timerText = "$seconds"
+                tvTimer.text = timerText
+            }
+
+
+        override fun onFinish() {
+            tvTimer.text = "0"
+            val view = LayoutInflater.from(this@VsCpu).inflate(R.layout.dialog_timer, null, false)
+            val alert = AlertDialog.Builder(this@VsCpu)
+            alert.setView(view)
+            alert.setCancelable(false)
+
+            val dialog = alert.create()
+            dialog.show()
+
+            val name = intent.getStringExtra("Name")
+
+
+            val btnMain = view.findViewById<Button>(R.id.btnMain)
+            btnMain.setOnClickListener {
+                val intent = Intent(this@VsCpu, VsCpu::class.java)
+                intent.putExtra("Name", name.toString())
+                startActivity(intent)
+            }
+
+            val btnKembali = view.findViewById<Button>(R.id.btnKembali)
+            btnKembali.setOnClickListener {
+                val intent = Intent(this@VsCpu, MenuActivity::class.java)
+                intent.putExtra("Name", name.toString())
+                startActivity(intent)
+            }
+
+            }
+        }
+
+        timer.start()
 
         val controller = Controller(this)
 
         val btn = mutableListOf(batu1, kt1, gt1)
-        var klik: Boolean = true
+        var klik = true
 
         repeat(btn.size) {
             batu1.setOnClickListener {
@@ -53,6 +100,7 @@ class VsCpu : AppCompatActivity(), Callback {
                     batu1.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.batu))
                     batu1.background = (ContextCompat.getDrawable(this, R.drawable.select))
                     klik = false
+                    timer.cancel()
 
                     when (indext) {
                         0 -> {
@@ -97,6 +145,7 @@ class VsCpu : AppCompatActivity(), Callback {
                     kt1.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.kertas))
                     kt1.background = (ContextCompat.getDrawable(this, R.drawable.select))
                     klik = false
+                    timer.cancel()
 
                     when (indext) {
                         0 -> {
@@ -139,6 +188,7 @@ class VsCpu : AppCompatActivity(), Callback {
                     gt1.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.gunting))
                     gt1.background = (ContextCompat.getDrawable(this, R.drawable.select))
                     klik = false
+                    timer.cancel()
 
                     when (indext) {
                         0 -> {
@@ -188,6 +238,9 @@ class VsCpu : AppCompatActivity(), Callback {
             gt2.background = (ContextCompat.getDrawable(this, R.drawable.gunting))
             imageStatus.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.vs))
             klik = true
+            timer.cancel()
+            timer.onTick(30000)
+            timer.start()
         }
 
         home.setOnClickListener {
@@ -195,10 +248,10 @@ class VsCpu : AppCompatActivity(), Callback {
         }
 
 
-        pemain = findViewById<TextView>(R.id.pemain)
-        if (getIntent().getStringExtra("Name") != null) {
-            Nama = getIntent().getStringExtra("Name");
-            pemain.setText(Nama);
+        pemain = findViewById(R.id.pemain)
+        if (intent.getStringExtra("Name") != null) {
+            Nama = intent.getStringExtra("Name")
+            pemain.text = Nama
         }
 
         // Permission Gilde
@@ -212,12 +265,7 @@ class VsCpu : AppCompatActivity(), Callback {
     override fun kirimStatus(status: String) {
         when {
             status.contains("1") -> {
-                imageStatus.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        this,
-                        R.drawable.p1menang
-                    )
-                )
+                imageStatus.setImageResource(R.drawable.p1menang)
 
                 // Custom Dialog
                 val view = LayoutInflater.from(this).inflate(R.layout.activity_dialog, null, false)
@@ -229,14 +277,15 @@ class VsCpu : AppCompatActivity(), Callback {
                 dialog.show()
                 val hasilPemenang = view.findViewById<TextView>(R.id.tvResult)
                 val name = intent.getStringExtra("Name")
-                hasilPemenang.setText(name + "\n MENANG!");
+                hasilPemenang.text = name + "\n MENANG!"
 
 
                 val btnOk = view.findViewById<ImageView>(R.id.ivReset)
 
 
                 btnOk.setOnClickListener {
-                    dialog?.dismiss()
+                    dialog.dismiss()
+
                 }
 
                 val btnMenu = view.findViewById<ImageView>(R.id.ivHome)
@@ -247,13 +296,7 @@ class VsCpu : AppCompatActivity(), Callback {
 
 
             status.contains("2") -> {
-                imageStatus.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        this,
-                        R.drawable.p2menang
-                    )
-                )
-
+                imageStatus.setImageResource(R.drawable.p2menang)
                 // Custom Dialog
                 val view = LayoutInflater.from(this).inflate(R.layout.activity_dialog, null, false)
                 val alert = AlertDialog.Builder(this)
@@ -266,13 +309,13 @@ class VsCpu : AppCompatActivity(), Callback {
                 val hasilPemenang = view.findViewById<TextView>(R.id.tvResult)
                 intent.putExtra("cpu", "CPU")
                 val name = intent.getStringExtra("cpu")
-                hasilPemenang.setText(name + "\n MENANG!");
+                hasilPemenang.text = "$name\n MENANG!"
 
 
                 val btnOk = view.findViewById<ImageView>(R.id.ivReset)
 
                 btnOk.setOnClickListener {
-                    dialog?.dismiss()
+                    dialog.dismiss()
                 }
 
                 val btnMenu = view.findViewById<ImageView>(R.id.ivHome)
@@ -283,13 +326,7 @@ class VsCpu : AppCompatActivity(), Callback {
 
             }
             status.contains("w") -> {
-                imageStatus.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        this,
-                        R.drawable.draw
-                    )
-                )
-
+                imageStatus.setImageResource(R.drawable.draw)
                 // Custom Dialog
                 val view = LayoutInflater.from(this).inflate(R.layout.activity_dialog, null, false)
                 val alert = AlertDialog.Builder(this)
@@ -302,14 +339,14 @@ class VsCpu : AppCompatActivity(), Callback {
                 val hasilPemenang = view.findViewById<TextView>(R.id.tvResult)
                 intent.putExtra("seri", "SERI!")
                 val name = intent.getStringExtra("seri")
-                hasilPemenang.setText(name);
+                hasilPemenang.text = name
 
 
                 val btnOk = view.findViewById<ImageView>(R.id.ivReset)
 
 
                 btnOk.setOnClickListener {
-                    dialog?.dismiss()
+                    dialog.dismiss()
                 }
 
                 val btnMenu = view.findViewById<ImageView>(R.id.ivHome)
