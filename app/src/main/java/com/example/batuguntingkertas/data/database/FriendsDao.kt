@@ -5,7 +5,7 @@ import androidx.room.*
 @Dao
 interface FriendsDao {
 
-    @Query("SELECT * FROM FriendsEntity")
+    @Query("SELECT * FROM FriendsEntity ORDER BY idFriend ASC")
     fun getAllFriends(): MutableList<FriendsEntity>
 
     @Query("SELECT * FROM FriendsEntity WHERE idFriend=:id ")

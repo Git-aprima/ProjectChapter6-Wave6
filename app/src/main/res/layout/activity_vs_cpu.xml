@@ -3,10 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="#DDE9F6"
     android:padding="16dp"
-    android:layout_height="match_parent"
     tools:context=".ui.play.VsCpu">
+
+
+    <TextView
+        android:id="@+id/tvTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.556"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/icon"
+        tools:text="WAKTU" />
+
+    <ImageView
+        android:id="@+id/ivTimer"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_baseline_timer_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/icon" />
 
     <ImageView
         android:id="@+id/ivHome"
@@ -14,8 +37,7 @@
         android:layout_height="50sp"
         android:src="@drawable/ic_home"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/icon"
@@ -32,28 +54,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/hey_comic"
         android:text="Name"
+        android:textColor="#FF5722"
         android:textSize="23sp"
         android:textStyle="bold"
-        android:fontFamily="@font/hey_comic"
-        android:textColor="#FF5722"
         app:layout_constraintEnd_toEndOf="@id/batu1"
         app:layout_constraintStart_toStartOf="@id/batu1"
-        app:layout_constraintTop_toBottomOf="@+id/icon" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTimer" />
 
     <TextView
         android:id="@+id/cpu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/hey_comic"
         android:text="CPU"
+        android:textColor="#08CBFB"
         android:textSize="23sp"
         android:textStyle="bold"
-        android:textColor="#08CBFB"
-        android:fontFamily="@font/hey_comic"
         app:layout_constraintBottom_toBottomOf="@id/pemain"
         app:layout_constraintEnd_toEndOf="@id/batu2"
-        app:layout_constraintStart_toStartOf="@id/batu2"/>
+        app:layout_constraintStart_toStartOf="@id/batu2" />
 
     <ImageView
         android:id="@+id/batu1"
@@ -71,7 +93,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/batu"
         app:layout_constraintBottom_toBottomOf="@id/batu1"
-        app:layout_constraintStart_toEndOf="@id/status"/>
+        app:layout_constraintStart_toEndOf="@id/status" />
 
     <ImageView
         android:id="@+id/kt1"
@@ -117,19 +139,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
         android:background="@drawable/vs"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/icon" />
 
     <ImageView
-        android:visibility="visible"
         android:id="@+id/refresh"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/ic_baseline_refresh_24"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

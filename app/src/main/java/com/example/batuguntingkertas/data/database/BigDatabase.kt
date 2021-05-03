@@ -5,12 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [UserEntity::class, FriendsEntity::class], version = 1)
+@Database(entities = [UserEntity::class, FriendsEntity::class], version = 1, exportSchema = false)
 abstract class BigDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun friendsDao(): FriendsDao
 
     companion object {
+        @Volatile
         private var INSTANCE: BigDatabase? = null
 
         fun getInstance(context: Context): BigDatabase? {

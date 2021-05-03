@@ -8,5 +8,5 @@ import androidx.room.PrimaryKey
 data class FriendsEntity(
     @ColumnInfo(name = "name") var name: String,
     @ColumnInfo(name = "email") var email: String,
-    @PrimaryKey(autoGenerate = true) var idFriend: Int?
+    @PrimaryKey(autoGenerate = true) var idFriend: Int
 )
