@@ -9,10 +9,10 @@ import kotlinx.android.parcel.Parcelize
 @Entity
 @Parcelize
 data class UserEntity(
-    @ColumnInfo(name = "username") val username :String ,
-    @ColumnInfo(name = "email") val email: String ,
-    @ColumnInfo(name = "name") val name: String ,
-    @ColumnInfo(name = "password") val password: String ,
-    @ColumnInfo(name = "image") val image: String? ,
-    @PrimaryKey(autoGenerate = true) val id: Int? = 0
-): Parcelable
+    @ColumnInfo(name = "username") var username: String,
+    @ColumnInfo(name = "email") var email: String,
+    @ColumnInfo(name = "name") var name: String,
+    @ColumnInfo(name = "password") var password: String,
+    @ColumnInfo(name = "image") var image: String?,
+    @PrimaryKey(autoGenerate = true) var id: Int?
+) : Parcelable

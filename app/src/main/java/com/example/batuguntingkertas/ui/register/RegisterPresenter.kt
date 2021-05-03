@@ -1,7 +1,7 @@
 package com.example.batuguntingkertas.ui.register
 
 import android.content.Context
-import com.example.batuguntingkertas.data.database.DbUser
+import com.example.batuguntingkertas.data.database.BigDatabase
 import com.example.batuguntingkertas.data.database.UserDao
 import com.example.batuguntingkertas.data.database.UserEntity
 import kotlinx.coroutines.Dispatchers
@@ -12,12 +12,12 @@ class RegisterPresenter(context: Context, private val navigator: RegisterNavigat
     private var userDao: UserDao? = null
 
     init {
-        val db = DbUser.getInstance(context)
+        val db = BigDatabase.getInstance(context)
         userDao = db?.userDao()
     }
 
     fun register(username : String, email : String, password : String, name: String, image : String) {
-        val user = UserEntity(username, email, password, name, image )
+        val user = UserEntity(username, email, password, name, image,0)
         GlobalScope.launch {
             val id = userDao?.insertUser(user)
             GlobalScope.launch(Dispatchers.Main) {
