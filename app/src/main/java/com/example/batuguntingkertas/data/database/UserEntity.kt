@@ -14,5 +14,5 @@ data class UserEntity(
     @ColumnInfo(name = "name") var name: String,
     @ColumnInfo(name = "password") var password: String,
     @ColumnInfo(name = "image") var image: String?,
-    @PrimaryKey(autoGenerate = true) var id: Int?
-) : Parcelable
+    @PrimaryKey(autoGenerate = true) var id: Int = 0
+):Parcelable

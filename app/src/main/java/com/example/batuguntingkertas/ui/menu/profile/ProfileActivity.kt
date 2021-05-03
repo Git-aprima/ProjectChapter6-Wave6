@@ -41,8 +41,8 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         btnLogout.setOnClickListener {
-            pref?.isLogin = false
-            startActivity(Intent(this, LoginActivity::class.java))
+            pref.isLogin = false
+            finish()
         }
 
         fabBack.setOnClickListener {

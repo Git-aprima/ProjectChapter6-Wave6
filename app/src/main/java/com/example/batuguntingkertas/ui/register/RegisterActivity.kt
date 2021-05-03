@@ -62,7 +62,7 @@ class RegisterActivity : AppCompatActivity(), RegisterNavigator {
                     name = etNameRegis.text.toString()
                     val password = etPassRegis.text.toString()
                     val image = imageUri?.path.toString()
-                    presenter.register(username, email, password, name, image)
+                    presenter.register(username,email,password,name,image)
                 }
             }
         }
@@ -91,7 +91,7 @@ class RegisterActivity : AppCompatActivity(), RegisterNavigator {
     }
 
     override fun errorRegistrasi() {
-        Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Gagal Coba lagi", Toast.LENGTH_SHORT).show()
     }
 
     override fun succesRegistrasi() {

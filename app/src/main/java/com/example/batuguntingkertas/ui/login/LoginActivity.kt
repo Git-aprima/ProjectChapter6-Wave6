@@ -31,7 +31,6 @@ class LoginActivity : AppCompatActivity(), LoginNavigator {
         btnLoginDua = findViewById(R.id.btnLoginDua)
         ivJudul = findViewById(R.id.ivJudulLogin)
         val login = LoginPresenter(this, this)
-        val pref = SharedPref(this)
 
         Glide.with(this).load("https://i.ibb.co/HC5ZPgD/splash-screen1.png").into(ivJudul)
 
@@ -47,9 +46,6 @@ class LoginActivity : AppCompatActivity(), LoginNavigator {
                     val nama = etUserName.text.toString()
                     val password = etUserPassword.text.toString()
                     login.login(nama, password)
-                    pref.username = nama
-                    pref.sandi = password
-                    pref.isLogin = true
                 }
             }
         }
