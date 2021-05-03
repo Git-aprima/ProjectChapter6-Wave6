@@ -16,7 +16,7 @@ import com.example.batuguntingkertas.R
 import com.example.batuguntingkertas.ui.menu.MenuActivity
 import com.example.batuguntingkertas.ui.play.callback.Callback
 import com.example.batuguntingkertas.ui.play.controller.Controller
-import kotlinx.android.synthetic.main.fragment_member.*
+
 
 class VsCpu : AppCompatActivity(), Callback {
     private lateinit var imageStatus: ImageView
