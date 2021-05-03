@@ -12,10 +12,8 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.batuguntingkertas.R
 import com.example.batuguntingkertas.ui.login.LoginActivity
-import com.example.batuguntingkertas.ui.menu.MenuActivity
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
-import kotlinx.android.synthetic.main.fragment_member.*
 
 class RegisterActivity : AppCompatActivity(), RegisterNavigator {
     private lateinit var ivKembali: ImageView
@@ -43,19 +41,30 @@ class RegisterActivity : AppCompatActivity(), RegisterNavigator {
         btnRegister = findViewById(R.id.btnRegister)
         ivJudul = findViewById(R.id.ivJudulRegis)
         val presenter = RegisterPresenter(this, this)
-
         var name = "admin"
+
         Glide.with(this).load("https://i.ibb.co/HC5ZPgD/splash-screen1.png").into(ivJudul)
 
+        ivKembali.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
         btnRegister.setOnClickListener {
-            imageUri?.path
-            val username = etUserNameRegis.text.toString()
-            val email = etEmailRegis.text.toString()
-            name = etNameRegis.text.toString()
-            val password = etPassRegis.text.toString()
-//            val image = imageUri?.path.toString()
-            val image = "ada"
-            presenter.register(username, email, password, name, image)
+            when {
+                etUserNameRegis.text.toString().isEmpty() -> {
+                    etUserNameRegis.error = "Username Belum Diisi"
+                }
+                etPassRegis.text.toString().isEmpty() -> {
+                    etPassRegis.error = "Password Belum Diisi"
+                }
+                else -> {
+                    val username = etUserNameRegis.text.toString()
+                    val email = etEmailRegis.text.toString()
+                    name = etNameRegis.text.toString()
+                    val password = etPassRegis.text.toString()
+                    val image = imageUri?.path.toString()
+                    presenter.register(username, email, password, name, image)
+                }
+            }
         }
 
         btnUploadFoto.setOnClickListener {
@@ -72,7 +81,7 @@ class RegisterActivity : AppCompatActivity(), RegisterNavigator {
             if (resultCode === RESULT_OK) {
                 val resultUri = result.uri
                 val path = result.uri.path
-                Log.d("PATH",path.toString())
+                Log.d("PATH", path.toString())
                 imageUri = resultUri
                 ivFotoProfil.setImageURI(resultUri)
             } else if (resultCode === CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
@@ -81,13 +90,12 @@ class RegisterActivity : AppCompatActivity(), RegisterNavigator {
         }
     }
 
-    override fun erroRegistrasi() {
+    override fun errorRegistrasi() {
         Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT).show()
     }
 
     override fun succesRegistrasi() {
-        val intent = Intent(this, MenuActivity::class.java)
-        startActivity(intent)
+        startActivity(Intent(this, LoginActivity::class.java))
         finish()
     }
 }

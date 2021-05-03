@@ -1,29 +1,26 @@
 package com.example.batuguntingkertas.ui.login
 
 import android.content.Context
-import com.example.batuguntingkertas.database.DbUser
-import com.example.batuguntingkertas.database.UserDao
-import com.example.batuguntingkertas.database.UserEntity
+import com.example.batuguntingkertas.data.database.BigDatabase
+import com.example.batuguntingkertas.data.database.UserDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class LoginPresenter (context: Context, private val navigator: LoginNavigator) {
-    private var userDao : UserDao? = null
-
+class LoginPresenter (context: Context,private val navigator: LoginNavigator) {
+    private var userDao :UserDao? = null
     init {
-        val db = DbUser.getInstance(context)
-        userDao = db?.userDao()
+        val dB = BigDatabase.getInstance(context)
+        userDao = dB?.userDao()
     }
-
-    fun login (nama : String, password : String){
+    fun login (name : String, password : String){
         GlobalScope.launch {
-            val id : UserEntity? = userDao?.getUser(nama,password)
-            GlobalScope.launch (Dispatchers.Main) {
-                if (id.toString()!= 0.toString()){
-                    navigator.succesLogin()
-                }else{
+            val id = userDao?.getUser(name)
+            GlobalScope.launch (Dispatchers.Main){
+                if (id==null){
                     navigator.errorLogin()
+                }else {
+                    navigator.succesLogin()
                 }
             }
         }
