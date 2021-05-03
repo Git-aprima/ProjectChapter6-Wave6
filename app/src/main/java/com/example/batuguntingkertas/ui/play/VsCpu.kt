@@ -31,6 +31,7 @@ class VsCpu : AppCompatActivity(), Callback {
     private lateinit var home: ImageView
     private lateinit var tvTimer: TextView
     private var Nama: String? = null
+    //tes commit
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -356,6 +357,5 @@ class VsCpu : AppCompatActivity(), Callback {
             }
         }
     }
-
 
 }
