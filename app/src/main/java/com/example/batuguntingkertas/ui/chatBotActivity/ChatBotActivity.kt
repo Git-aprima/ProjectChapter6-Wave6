@@ -50,7 +50,7 @@ class ChatBotActivity : AppCompatActivity() {
         recyclerView()
         buttonKirim()
 
-        pesanUtama("Halo! kenalin ini CaBo, yuk ngobrol seputaran gamenya!")
+        pesanUtama("Halo! kenalin ini CaBo, yuk ngobrol seputaran gamenya! Kamu bisa coba keyword dibawah untuk memulai permainan atau informasi cara bermain\n1.Halaman Utama\n2.Main Dengan Teman\n3.Main Dengan Komputer\n4.Cari\n5.Tutorial")
     }
 
     private fun buttonKirim() {
