@@ -1,8 +1,11 @@
 package com.example.batuguntingkertas.ui.play
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.LayoutInflater
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -12,11 +15,13 @@ import com.example.batuguntingkertas.R
 import com.example.batuguntingkertas.ui.play.callback.Callback
 import com.example.batuguntingkertas.ui.play.controller.Controller
 import com.bumptech.glide.Glide
+import com.example.batuguntingkertas.ui.menu.MenuActivity
 
 class VsPlayer : AppCompatActivity(), Callback {
     private lateinit var imageStatus: ImageView
     private lateinit var refresh: ImageView
     private lateinit var home: ImageView
+    private lateinit var tvTimer2: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,11 +32,53 @@ class VsPlayer : AppCompatActivity(), Callback {
         refresh = findViewById(R.id.refresh)
         val controller = Controller(this)
         home = findViewById(R.id.ivHome)
+        tvTimer2 = findViewById(R.id.tvTimer2)
 
         var player1 = 0
         var player2 = 0
-        var klikPlayer1: Boolean = true
-        var klikPlayer2: Boolean = true
+        var klikPlayer1 = true
+        var klikPlayer2 = true
+
+        val timer = object : CountDownTimer(30000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                val secondsRemaining = (millisUntilFinished % 60000) / 1000
+                val seconds = (secondsRemaining)
+                val timerText = "$seconds"
+                tvTimer2.text = timerText
+            }
+
+
+            override fun onFinish() {
+                tvTimer2.text = "0"
+                val view = LayoutInflater.from(this@VsPlayer).inflate(R.layout.dialog_timer, null, false)
+                val alert = AlertDialog.Builder(this@VsPlayer)
+                alert.setView(view)
+                alert.setCancelable(false)
+
+                val dialog = alert.create()
+                dialog.show()
+
+                val name = intent.getStringExtra("Name")
+
+
+                val btnMain = view.findViewById<Button>(R.id.btnMain)
+                btnMain.setOnClickListener {
+                    val intent = Intent(this@VsPlayer, VsPlayer::class.java)
+                    intent.putExtra("Name", name.toString())
+                    startActivity(intent)
+                }
+
+                val btnKembali = view.findViewById<Button>(R.id.btnKembali)
+                btnKembali.setOnClickListener {
+                    val intent = Intent(this@VsPlayer, MenuActivity::class.java)
+                    intent.putExtra("Name", name.toString())
+                    startActivity(intent)
+                }
+
+            }
+        }
+
+        timer.start()
 
         //Player 1
         val batu1 = findViewById<ImageView>(R.id.batu1)
@@ -89,6 +136,7 @@ class VsPlayer : AppCompatActivity(), Callback {
                 klikPlayer2 = false
                 Toast.makeText(this, "Pemain 2 memilih batu", Toast.LENGTH_SHORT).show()
                 controller.bandingkanNumbers(player1, player2)
+                timer.cancel()
             }
         }
         val kt2 = findViewById<ImageView>(R.id.kt2)
@@ -105,6 +153,7 @@ class VsPlayer : AppCompatActivity(), Callback {
                 klikPlayer2 = false
                 Toast.makeText(this, "Pemain 2 memilih kertas", Toast.LENGTH_SHORT).show()
                 controller.bandingkanNumbers(player1, player2)
+                timer.cancel()
             }
         }
         val gt2 = findViewById<ImageView>(R.id.gt2)
@@ -121,6 +170,7 @@ class VsPlayer : AppCompatActivity(), Callback {
                 klikPlayer2 = false
                 Toast.makeText(this, "Pemain 2 memilih gunting", Toast.LENGTH_SHORT).show()
                 controller.bandingkanNumbers(player1, player2)
+                timer.cancel()
             }
         }
 
@@ -134,6 +184,9 @@ class VsPlayer : AppCompatActivity(), Callback {
             imageStatus.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.vs))
             klikPlayer1 = true
             klikPlayer2 = true
+            timer.cancel()
+            timer.onTick(30000)
+            timer.start()
         }
 
         // Permission Gilde
@@ -150,13 +203,7 @@ class VsPlayer : AppCompatActivity(), Callback {
     override fun kirimStatus(status: String) {
         when {
             status.contains("1") -> {
-                imageStatus.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        this,
-                        R.drawable.p1menang
-                    )
-                )
-
+                imageStatus.setImageResource(R.drawable.p1menang)
                 // Custom Dialog
                 val view = LayoutInflater.from(this).inflate(R.layout.activity_dialog, null, false)
                 val alert = AlertDialog.Builder(this)
@@ -167,13 +214,13 @@ class VsPlayer : AppCompatActivity(), Callback {
                 dialog.show()
                 val hasilPemenang = view.findViewById<TextView>(R.id.tvResult)
                 val name = intent.getStringExtra("Name")
-                hasilPemenang.setText(name + "\n MENANG!");
+                hasilPemenang.text = "$name\n MENANG!"
 
                 val btnOk = view.findViewById<ImageView>(R.id.ivReset)
 
 
                 btnOk.setOnClickListener {
-                    dialog?.dismiss()
+                    dialog.dismiss()
                 }
 
                 val btnMenu = view.findViewById<ImageView>(R.id.ivHome)
@@ -182,12 +229,7 @@ class VsPlayer : AppCompatActivity(), Callback {
                 }
             }
             status.contains("2") -> {
-                imageStatus.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        this,
-                        R.drawable.p2menang
-                    )
-                )
+                imageStatus.setImageResource(R.drawable.p2menang)
 
                 // Custom Dialog
                 val view = LayoutInflater.from(this).inflate(R.layout.activity_dialog, null, false)
@@ -201,13 +243,13 @@ class VsPlayer : AppCompatActivity(), Callback {
                 val hasilPemenang = view.findViewById<TextView>(R.id.tvResult)
                 intent.putExtra("cpu", "Pemain 2")
                 val name = intent.getStringExtra("cpu")
-                hasilPemenang.setText(name + "\n MENANG!");
+                hasilPemenang.text = "$name\n MENANG!"
 
                 val btnOk = view.findViewById<ImageView>(R.id.ivReset)
 
 
                 btnOk.setOnClickListener {
-                    dialog?.dismiss()
+                    dialog.dismiss()
                 }
 
                 val btnMenu = view.findViewById<ImageView>(R.id.ivHome)
@@ -218,12 +260,7 @@ class VsPlayer : AppCompatActivity(), Callback {
 
             }
             status.contains("w") -> {
-                imageStatus.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        this,
-                        R.drawable.draw
-                    )
-                )
+                imageStatus.setImageResource(R.drawable.draw)
 
                 // Custom Dialog
                 val view = LayoutInflater.from(this).inflate(R.layout.activity_dialog, null, false)
@@ -237,13 +274,13 @@ class VsPlayer : AppCompatActivity(), Callback {
                 val hasilPemenang = view.findViewById<TextView>(R.id.tvResult)
                 intent.putExtra("seri", "SERI!")
                 val name = intent.getStringExtra("seri")
-                hasilPemenang.setText(name);
+                hasilPemenang.text = name
 
                 val btnOk = view.findViewById<ImageView>(R.id.ivReset)
 
 
                 btnOk.setOnClickListener {
-                    dialog?.dismiss()
+                    dialog.dismiss()
                 }
 
                 val btnMenu = view.findViewById<ImageView>(R.id.ivHome)
