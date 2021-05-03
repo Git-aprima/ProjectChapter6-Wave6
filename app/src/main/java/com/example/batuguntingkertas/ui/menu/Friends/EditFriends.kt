@@ -26,15 +26,14 @@ class EditFriends : AppCompatActivity() {
     }
 
     fun setUpView() {
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         val intentType = intent.getIntExtra("intent_type", 0)
         when (intentType) {
             1 -> {
 
             }
             0 -> {
-                btnSave.visibility = View.GONE
-                getFriend()
+                btnUpdate.visibility = View.GONE
+                //getFriend()
             }
         }
     }
@@ -50,20 +49,18 @@ class EditFriends : AppCompatActivity() {
             }
             finish()
         }
+
     }
 
-    fun getFriend() {
-        id = intent.getIntExtra("send_id", 0)
-        GlobalScope.launch {
-            val friend = dao?.getFriend(id)?.get(0)
-            etName.setText(friend?.name)
-            etEmail.setText(friend?.email)
+//    fun getFriend() {
+//        id = intent.getIntExtra("send_id", 0)
+//        GlobalScope.launch {
+//            val friend = dao?.getFriend(id)?.get(0)
+//            etName.setText(friend?.name)
+//            etEmail.setText(friend?.email)
+//
+//        }
+//    }
 
-        }
-    }
 
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return super.onSupportNavigateUp()
-    }
 }

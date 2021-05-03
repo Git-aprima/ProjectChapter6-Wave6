@@ -8,7 +8,7 @@ import com.example.batuguntingkertas.R
 import com.example.batuguntingkertas.data.database.FriendsEntity
 import kotlinx.android.synthetic.main.friends_item.view.*
 
-class FriendsAdapter(val friends: MutableList<FriendsEntity>, val listener: OnListener): RecyclerView.Adapter<FriendsAdapter.FriendsViewHolder>() {
+class FriendsAdapter(val friends: MutableList<FriendsEntity>): RecyclerView.Adapter<FriendsAdapter.FriendsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendsViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.friends_item, parent, false)
@@ -21,9 +21,9 @@ class FriendsAdapter(val friends: MutableList<FriendsEntity>, val listener: OnLi
         val friend = friends[position]
         holder.view.tvName.text = friend.name
         holder.view.tvEmail.text = friend.email
-        holder.view.tvEdit.setOnClickListener {
-            listener.onClick(friend)
-        }
+//        holder.view.tvEdit.setOnClickListener {
+//            listener.onUpdate(friend)
+//        }
     }
 
     class FriendsViewHolder(val view: View): RecyclerView.ViewHolder(view)
@@ -34,7 +34,8 @@ class FriendsAdapter(val friends: MutableList<FriendsEntity>, val listener: OnLi
         notifyDataSetChanged()
     }
 
-    interface OnListener{
-        fun onClick(friends: FriendsEntity)
-    }
+//    interface OnListener{
+//        fun onUpdate(friends: FriendsEntity)
+//    }
+
 }

@@ -3,17 +3,14 @@ package com.example.batuguntingkertas.ui.menu.Friends
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.batuguntingkertas.R
 import com.example.batuguntingkertas.data.database.BigDatabase
-import com.example.batuguntingkertas.data.database.FriendsEntity
 import kotlinx.android.synthetic.main.activity_friends.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class FriendsActivity : AppCompatActivity() {
 
@@ -32,7 +29,7 @@ class FriendsActivity : AppCompatActivity() {
         super.onStart()
         GlobalScope.launch {
             val friends = dao?.getAllFriends()
-            GlobalScope.launch(Dispatchers.Main){
+            GlobalScope.launch(Dispatchers.Main) {
                 friends?.let { friendAdapter.setData(it) }
             }
         }
@@ -41,12 +38,12 @@ class FriendsActivity : AppCompatActivity() {
     fun setListener() {
         val btnTambahTeman = findViewById<Button>(R.id.btnTambahTeman)
         btnTambahTeman?.setOnClickListener {
-           intentEdit(0, 0)
+            startActivity(Intent(applicationContext, EditFriends::class.java))
 
         }
     }
 
-    fun intentEdit(id: Int, intentType: Int){
+    fun intentEdit(id: Int, intentType: Int) {
         startActivity(
             Intent(applicationContext, EditFriends::class.java)
                 .putExtra("send_id", id)
@@ -55,12 +52,7 @@ class FriendsActivity : AppCompatActivity() {
     }
 
     fun setRecycler() {
-        friendAdapter = FriendsAdapter(mutableListOf(), object : FriendsAdapter.OnListener{
-            override fun onClick(friends: FriendsEntity) {
-                friends.idFriend?.let { intentEdit(it, 0) }
-            }
-        })
-
+        friendAdapter = FriendsAdapter(mutableListOf())
         rvListFriends.apply {
             layoutManager = LinearLayoutManager(this@FriendsActivity)
             adapter = friendAdapter
