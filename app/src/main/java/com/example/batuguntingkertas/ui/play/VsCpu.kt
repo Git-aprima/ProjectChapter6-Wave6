@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.batuguntingkertas.R
+import com.example.batuguntingkertas.data.lokal.SharedPref
 import com.example.batuguntingkertas.ui.menu.MenuActivity
 import com.example.batuguntingkertas.ui.play.callback.Callback
 import com.example.batuguntingkertas.ui.play.controller.Controller
@@ -29,11 +30,13 @@ class VsCpu : AppCompatActivity(), Callback {
     private lateinit var pemain: TextView
     private lateinit var home: ImageView
     private lateinit var tvTimer: TextView
-    private var Nama: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vs_cpu)
+
+        val pref = SharedPref(this)
+        val nama = pref.username
 
         batu1 = findViewById(R.id.batu1)
         batu2 = findViewById(R.id.batu2)
@@ -45,6 +48,7 @@ class VsCpu : AppCompatActivity(), Callback {
         imageStatus = findViewById(R.id.status)
         home = findViewById(R.id.ivHome)
         tvTimer = findViewById(R.id.tvTimer)
+
 
         val timer = object : CountDownTimer(30000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
@@ -227,7 +231,6 @@ class VsCpu : AppCompatActivity(), Callback {
         }
 
 
-
         refresh.setOnClickListener {
             batu1.background = (ContextCompat.getDrawable(this, R.drawable.batu))
             batu2.background = (ContextCompat.getDrawable(this, R.drawable.batu))
@@ -246,12 +249,8 @@ class VsCpu : AppCompatActivity(), Callback {
             finish()
         }
 
-
         pemain = findViewById(R.id.pemain)
-        if (intent.getStringExtra("Name") != null) {
-            Nama = intent.getStringExtra("Name")
-            pemain.text = Nama
-        }
+        pemain.text = nama
 
         // Permission Gilde
         val icon = findViewById<ImageView>(R.id.icon)
@@ -262,6 +261,8 @@ class VsCpu : AppCompatActivity(), Callback {
 
 
     override fun kirimStatus(status: String) {
+        val pref = SharedPref(this)
+        val nama = pref.username
         when {
             status.contains("1") -> {
                 imageStatus.setImageResource(R.drawable.p1menang)
@@ -275,8 +276,7 @@ class VsCpu : AppCompatActivity(), Callback {
                 val dialog = alert.create()
                 dialog.show()
                 val hasilPemenang = view.findViewById<TextView>(R.id.tvResult)
-                val name = intent.getStringExtra("Name")
-                hasilPemenang.text = name + "\n MENANG!"
+                hasilPemenang.text = "$nama MENANG!"
 
 
                 val btnOk = view.findViewById<ImageView>(R.id.ivReset)
@@ -306,9 +306,7 @@ class VsCpu : AppCompatActivity(), Callback {
                 dialog.show()
 
                 val hasilPemenang = view.findViewById<TextView>(R.id.tvResult)
-                intent.putExtra("cpu", "CPU")
-                val name = intent.getStringExtra("cpu")
-                hasilPemenang.text = "$name\n MENANG!"
+                hasilPemenang.text = "$nama MENANG!"
 
 
                 val btnOk = view.findViewById<ImageView>(R.id.ivReset)
@@ -355,6 +353,4 @@ class VsCpu : AppCompatActivity(), Callback {
             }
         }
     }
-
-
 }

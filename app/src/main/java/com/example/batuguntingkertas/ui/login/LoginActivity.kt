@@ -21,7 +21,6 @@ class LoginActivity : AppCompatActivity(), LoginNavigator {
     private lateinit var btnLoginDua: Button
     private lateinit var ivJudul: ImageView
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)

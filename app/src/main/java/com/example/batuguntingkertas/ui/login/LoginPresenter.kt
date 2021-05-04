@@ -23,9 +23,8 @@ class LoginPresenter (context: Context,private val navigator: LoginNavigator) {
                     navigator.errorLogin()
                 }else {
                     navigator.succesLogin()
-                    pref.id= id.id
-                    pref.username = id.username
-                    pref.isLogin = false
+                    pref.username = name
+                    pref.isLogin = true
                 }
             }
         }

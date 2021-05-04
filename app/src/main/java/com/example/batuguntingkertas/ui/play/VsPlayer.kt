@@ -15,6 +15,7 @@ import com.example.batuguntingkertas.R
 import com.example.batuguntingkertas.ui.play.callback.Callback
 import com.example.batuguntingkertas.ui.play.controller.Controller
 import com.bumptech.glide.Glide
+import com.example.batuguntingkertas.data.lokal.SharedPref
 import com.example.batuguntingkertas.ui.menu.MenuActivity
 
 class VsPlayer : AppCompatActivity(), Callback {
@@ -23,7 +24,6 @@ class VsPlayer : AppCompatActivity(), Callback {
     private lateinit var home: ImageView
     private lateinit var tvTimer2: TextView
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vs_player)
@@ -31,9 +31,11 @@ class VsPlayer : AppCompatActivity(), Callback {
         imageStatus = findViewById(R.id.status)
         refresh = findViewById(R.id.refresh)
         val controller = Controller(this)
+        val pref = SharedPref(this)
         home = findViewById(R.id.ivHome)
         tvTimer2 = findViewById(R.id.tvTimer2)
 
+        val nama = pref.username
         var player1 = 0
         var player2 = 0
         var klikPlayer1 = true
@@ -201,6 +203,8 @@ class VsPlayer : AppCompatActivity(), Callback {
     }
 
     override fun kirimStatus(status: String) {
+        val pref = SharedPref(this)
+        val nama = pref.username
         when {
             status.contains("1") -> {
                 imageStatus.setImageResource(R.drawable.p1menang)
@@ -213,8 +217,7 @@ class VsPlayer : AppCompatActivity(), Callback {
                 val dialog = alert.create()
                 dialog.show()
                 val hasilPemenang = view.findViewById<TextView>(R.id.tvResult)
-                val name = intent.getStringExtra("Name")
-                hasilPemenang.text = "$name\n MENANG!"
+                hasilPemenang.text = "$nama\n MENANG!"
 
                 val btnOk = view.findViewById<ImageView>(R.id.ivReset)
 
@@ -242,8 +245,7 @@ class VsPlayer : AppCompatActivity(), Callback {
 
                 val hasilPemenang = view.findViewById<TextView>(R.id.tvResult)
                 intent.putExtra("cpu", "Pemain 2")
-                val name = intent.getStringExtra("cpu")
-                hasilPemenang.text = "$name\n MENANG!"
+                hasilPemenang.text = "\n MENANG!"
 
                 val btnOk = view.findViewById<ImageView>(R.id.ivReset)
 
@@ -273,8 +275,7 @@ class VsPlayer : AppCompatActivity(), Callback {
 
                 val hasilPemenang = view.findViewById<TextView>(R.id.tvResult)
                 intent.putExtra("seri", "SERI!")
-                val name = intent.getStringExtra("seri")
-                hasilPemenang.text = name
+                hasilPemenang.text = nama
 
                 val btnOk = view.findViewById<ImageView>(R.id.ivReset)
 

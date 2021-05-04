@@ -7,7 +7,6 @@ class SharedPref(context: Context) {
 
     private val LOGIN = "LOGIN"
     private val USERNAME = "USERNAME"
-    private val PASSWORD = "PASSWORD"
 
     var id: Int?
         get() = pref?.getInt("ID", 0)
@@ -25,16 +24,6 @@ class SharedPref(context: Context) {
             value.let {
                 pref?.edit()
                     ?.putString(USERNAME, it)
-                    ?.apply()
-            }
-        }
-
-    var sandi: String?
-        get() = pref?.getString(PASSWORD, "")
-        set(value) {
-            value.let {
-                pref?.edit()
-                    ?.putString(PASSWORD, it)
                     ?.apply()
             }
         }
