@@ -8,13 +8,17 @@
     android:padding="16dp"
     tools:context=".ui.play.VsPlayer">
 
-    <ImageView
-        android:id="@id/ivHome"
-        android:layout_width="50sp"
-        android:layout_height="50sp"
-        android:src="@drawable/ic_home"
+    <TextView
+        android:id="@+id/tvTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.556"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/icon"
+        tools:text="WAKTU" />
 
     <ImageView
         android:id="@+id/ivTimer"
@@ -26,17 +30,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/icon" />
 
-    <TextView
-        android:id="@+id/tvTimer2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.556"
+    <ImageView
+        android:id="@+id/ivHome"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:src="@drawable/ic_home"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/icon"
-        tools:text="WAKTU" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/icon"
@@ -49,7 +49,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/pemain"
+        android:id="@+id/pemainSatu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -60,21 +60,68 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/batu1"
         app:layout_constraintStart_toStartOf="@id/batu1"
-        app:layout_constraintTop_toBottomOf="@+id/tvTimer2" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTimer" />
 
     <TextView
-        android:id="@+id/pemain2"
+        android:id="@+id/scorePemain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/hey_comic"
+        android:text="0"
+        android:textColor="#FF5722"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/batu1"
+        app:layout_constraintStart_toStartOf="@id/batu1"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="210dp"/>
+
+
+    <TextView
+        android:id="@+id/cpu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/hey_comic"
-        android:text="Pemain 2"
+        android:text="CPU"
         android:textColor="#08CBFB"
         android:textSize="23sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/pemain"
+        app:layout_constraintBottom_toBottomOf="@id/pemainSatu"
         app:layout_constraintEnd_toEndOf="@id/batu2"
         app:layout_constraintStart_toStartOf="@id/batu2" />
+
+    <TextView
+        android:id="@+id/scoreCpu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="210dp"
+        android:fontFamily="@font/hey_comic"
+        android:text="0"
+        android:textColor="#08CBFB"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/scorePemain"
+        app:layout_constraintEnd_toEndOf="@id/batu2"
+        app:layout_constraintStart_toStartOf="@id/batu2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/scoreSeri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="210dp"
+        android:fontFamily="@font/hey_comic"
+        android:text="0"
+        android:textColor="#4CAF50"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.103" />
 
     <ImageView
         android:id="@+id/batu1"
@@ -83,7 +130,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/batu"
         app:layout_constraintEnd_toStartOf="@id/status"
-        app:layout_constraintTop_toBottomOf="@+id/pemain" />
+        app:layout_constraintTop_toBottomOf="@+id/pemainSatu" />
 
     <ImageView
         android:id="@+id/batu2"

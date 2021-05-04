@@ -17,7 +17,7 @@ object BotRespon {
             pesan.contains("halo") -> " halo juga"
             pesan.contains("kabar") -> "baik dong"
             pesan.contains("info") -> "Kamu bisa main batu gunting kertas dengan komputer atau bisa ajak temen kamu buat main bareng"
-            pesan.contains("mulai main") -> {
+            pesan.contains("halaman utama") -> {
                 MAIN
             }
             pesan.contains("main dengan teman") -> {
