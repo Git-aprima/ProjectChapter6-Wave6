@@ -10,15 +10,18 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUser(user: UserEntity): Long
 
+    @Query("SELECT * FROM UserEntity WHERE username = :username AND password=:password")
+    fun getUser(username: String,password : String): UserEntity
+
+    @Query("SELECT * FROM UserEntity")
+    fun getUserValue(): UserEntity
+
+    @Query("SELECT * FROM UserEntity WHERE id = :id")
+    fun getUserId(id: Int): UserEntity
+
     @Update
     fun updateUser(user: UserEntity): Int
 
     @Delete
     fun deleteUser(user: UserEntity): Int
-
-    @Query("SELECT * FROM UserEntity Where name=:name And password=:password")
-    fun getUser(name : String, password: String): UserEntity
-
-    @Query("SELECT * FROM UserEntity")
-    fun getValue(): UserEntity
 }

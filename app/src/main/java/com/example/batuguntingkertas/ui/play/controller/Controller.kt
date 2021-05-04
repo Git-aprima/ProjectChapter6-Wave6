@@ -19,7 +19,6 @@ class Controller(private val callback: Callback) {
 
             else -> "Draw"
         }
-
         callback.kirimStatus(status)
     }
 
